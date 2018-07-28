@@ -6,14 +6,14 @@ class DepartmentsSchema extends Schema {
   up () {
     this.create('departments', (collection) => {
     })
-    this.create('courses', (collection)=> {
-    })
-    this.create('students', (collection)=> {
-    })
+    // this.create('courses', (collection)=> {
+    // })
+    // this.create('students', (collection)=> {
+    // })
   }
 
   down () {
-    this.drop('departments', 'courses', 'students')
+    this.drop('departments', 'adonis_schema')
   }
 }
 

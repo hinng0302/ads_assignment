@@ -19,11 +19,6 @@ const Factory = use('Factory')
 class DatabaseSeeder {
   async run () {
     await Course.create({
-      DeptID:'CS', 
-      DeptName: 'Computer Science', 
-      Location: 'Green Zone'
-    })
-    await Department.create({
       CourseID: 'CS101',
       Title: 'Introduction to Data Science', 
       Level: 6,
@@ -31,6 +26,12 @@ class DatabaseSeeder {
         {Dept_id: 'cs', Year: 2016, ClassSize: 40, AvaliablePlaces: 40},
       ]
     })
+    await Department.create(
+      {
+        DeptID:'CS', 
+        DeptName: 'Computer Science', 
+        Location: 'Green Zone'
+      })
     await Student.create({
       studentID: 15101010,
       student_name: 'Chan Tai Man',

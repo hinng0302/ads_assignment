@@ -16,6 +16,9 @@
 const Route = use('Route')
 
 Route.on('/').render('welcome')
-Route.get('/dept/test', '/DepartmentController.index')
-Route.get('/stud/test', '/StudentController.index')
-Route.get('/cour/test', '/CourseController.index')
+
+Route.get('/dept/test', 'DepartmentController.index')
+Route.get('/stud/test', 'StudentController.index')
+Route.get('/cour/test', 'CourseController.index')
+
+Route.get('/course/offer_by_depart/:depart_code', 'CourseController.offerby_dept')
