@@ -9,7 +9,7 @@
 | make use of Lucid models directly.
 |
 */
-
+const Offer = use('App/Models/Offer')
 const Course=use('App/Models/Course')
 const Student=use('App/Models/Student')
 const Department = use('App/Models/Department')
@@ -22,16 +22,16 @@ class DatabaseSeeder {
       CourseID: 'CS101',
       Title: 'Introduction to Data Science', 
       Level: 6,
-      Offer: [
-        {Dept_id: 'cs', Year: 2016, ClassSize: 40, AvaliablePlaces: 40},
-      ]
     })
+    await Offer.create(
+      {Dept_id: 'CS', CourseID: 'CS101', Year: 2016, ClassSize: 40, AvaliablePlaces: 40}
+    )
     await Department.create(
-      {
-        DeptID:'CS', 
-        DeptName: 'Computer Science', 
-        Location: 'Green Zone'
-      })
+    {
+      DeptID:'CS', 
+      DeptName: 'Computer Science', 
+      Location: 'Green Zone'
+    })
     await Student.create({
       studentID: 15101010,
       student_name: 'Chan Tai Man',
