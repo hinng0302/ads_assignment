@@ -26,7 +26,8 @@
     "@adonisjs/lucid": "^5.0.4",
     "@adonisjs/session": "^1.0.25",
     "@adonisjs/shield": "^1.0.6",
-    "lucid-mongo": "^3.1.0"
+    "lucid-mongo": "^3.1.0",
+    "swagger-jsdoc": "^1.10.3"
   },
   "devDependencies": {},
   "autoload": {

@@ -14,9 +14,28 @@
 */
 
 const Route = use('Route')
-
+const swaggerJSDoc = use('swagger-jsdoc')
+Route.get('/api-specs', async({request, response})=>{
+    const options = {
+		swaggerDefinition: {
+			openapi: '3.0.0',
+			info:{
+				version: '1.0.0',
+				title: 'ADS_assignment',
+			},
+        },
+        apis:[
+            'apidocs/paths/*',
+            'apidocs/components/*'
+        ]
+    }
+    var swaggerSpec = swaggerJSDoc(options)
+	delete swaggerSpec.swagger
+	swaggerSpec.components = swaggerSpec.paths.components
+	delete swaggerSpec.paths.components
+	return swaggerSpec
+})
 Route.on('/').render('welcome')
-
 Route.get('/dept/test', 'DepartmentController.index')
 Route.get('/stud/test', 'StudentController.index')
 Route.get('/cour/test', 'CourseController.index')
@@ -26,6 +45,7 @@ Route.get('/course/offer_by_multi_depart/:depart_code1/:depart_code2/year/:year'
 
 Route.group(()=>{
     Route.get('/:studentID', 'StudentController.get')
+    Route.get('/', 'StudentController.index')
     Route.put('/', 'StudentController.add')
     Route.post('/', 'StudentController.edit')
     Route.delete('/', 'StudentController.delete')

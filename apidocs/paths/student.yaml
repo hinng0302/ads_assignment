@@ -1,0 +1,35 @@
+paths:
+  '/student/':
+    get:
+      tags:
+        - student
+      responses:
+        '200':
+          description: success operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/student_object'
+    put:
+      tags:
+        - student
+      requestBody:
+        description:
+        require: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/student_schema'
+      responses:
+        '200':
+          description:
+            
+    post:
+      tags:
+        - student
+    delete:
+      tags:
+        - student
+  '/student/{studentID}':

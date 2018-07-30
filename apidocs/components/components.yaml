@@ -1,0 +1,17 @@
+components:
+  schemas:
+    student_object:
+      type: object
+      properties:
+        _id: 
+          type: string
+        studentID:
+          type: integer
+        student_name:
+          type: string
+        DoB: 
+          type: string
+        created_at:
+          type: string
+        updated_at:
+          type: string
