@@ -45,7 +45,7 @@ Route.get('/course/offer_by_multi_depart/:depart_code1/:depart_code2/year/:year'
 
 Route.group(()=>{
     Route.get('/:studentID', 'StudentController.get')
-    Route.get('/', 'StudentController.index')
+    Route.get('/', 'StudentController.list')
     Route.put('/', 'StudentController.add')
     Route.post('/', 'StudentController.edit')
     Route.delete('/', 'StudentController.delete')

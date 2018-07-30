@@ -15,3 +15,50 @@ components:
           type: string
         updated_at:
           type: string
+    enroll_object:
+      type: object
+      properties:
+        _id: 
+          type: string
+        DeptId:
+          type: string
+        CourseID:
+          type: string
+        studentID: 
+          type: integer
+        Year:
+          type: integer
+        EnrolDate:
+          type: string
+        created_at:
+          type: string
+        updated_at:
+          type: string
+    student_schema:
+      type: object
+      properties:
+        studentID:
+          type: integer
+        student_name:
+          type: string
+        DoB: 
+          type: string
+    studentID:
+      type: object
+      properties:
+        studentID:
+          type: integer
+    response_object:
+      type: object
+      properties:
+        response:
+          type: boolean
+    student_enrolled_object:
+      type: object
+      properties:
+        Student:
+          $ref: '#/components/schemas/student_object'
+        Enrolled:
+          type: array
+          items:
+            $ref: '#/components/schemas/enroll_object'

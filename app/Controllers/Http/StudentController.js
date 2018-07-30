@@ -23,27 +23,41 @@ class StudentController {
     async add({request, response}){
         var {studentID, student_name, DoB } = request.only(['studentID', 'student_name', 'DoB'])
         console.log(typeof studentID+', '+typeof student_name+', '+typeof DoB )
+        var ret = false
         try{
-            var stud = new Student(request.only(['studentID', 'student_name', 'DoB']))
-            await stud.save()
+            var count = await Student.where({studentID: studentID}).fetch()
+            count = count.length
+            console.log(count)
+            if(count == 0){
+                var stud = new Student(request.only(['studentID', 'student_name', 'DoB']))
+                await stud.save()
+                ret = true
+            } else {
+                ret = false
+            }
         }catch(e){
             console.log(e)
-            response.json(e)
+            ret = false
         }
-        response.json(true)
+        response.json(ret)
     }
 
     async edit({request, response}){
+        var ret = {}
         var {studentID, student_name, DoB } = request.all(['studentID', 'student_name', 'DoB'])
         var stud = await Student.where(
-            { studentID:studentID },
-            { upsert: true }
+            { studentID: parseInt(studentID) },
         ).update({
             studentID:studentID,
             student_name:student_name,
             DoB: DoB,
-            updated_at: new Date
         })
+        stud = stud.toJSON()
+        if(stud['nModified'] == 1){
+            ret['response'] = true
+        } else {
+            ret['response'] = false
+        }
         response.json(stud)
     }
     async delete({request, response}){

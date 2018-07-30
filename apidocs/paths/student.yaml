@@ -16,7 +16,7 @@ paths:
       tags:
         - student
       requestBody:
-        description:
+        description: 'student'
         require: true
         content:
           application/json:
@@ -24,12 +24,59 @@ paths:
               $ref: '#/components/schemas/student_schema'
       responses:
         '200':
-          description:
-            
+          description: success operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/response_object'
     post:
       tags:
         - student
+      requestBody:
+        description: 'update student info'
+        require: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/student_schema'
+      response: 
+        '200':
+          description: success operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/response_object'
     delete:
       tags:
         - student
+      requestBody:
+        description:
+        require: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/studentID'
+      response:
+        '200':
+          description: success operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/response_object'
   '/student/{studentID}':
+    get:
+      tags:
+        - student
+      parameters:
+        - in: path
+          name: studentID
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: success operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/student_enrolled_object'
