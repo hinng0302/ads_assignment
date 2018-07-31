@@ -1,4 +1,21 @@
 paths:
+  '/student/{studentID}':
+    get:
+      tags:
+        - student
+      parameters:
+        - in: path
+          name: studentID
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: success operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/student_enrolled_object'
   '/student/':
     get:
       tags:
@@ -63,20 +80,3 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/response_object'
-  '/student/{studentID}':
-    get:
-      tags:
-        - student
-      parameters:
-        - in: path
-          name: studentID
-          required: true
-          schema:
-            type: integer
-      responses:
-        '200':
-          description: success operation
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/student_enrolled_object'

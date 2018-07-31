@@ -1,7 +1,7 @@
 'use strict'
 const Student = use('App/Models/Student')
 class StudentController {
-    async index({response}){
+    async list({response}){
         var student = await Student.fetch()
         response.json(student)
     }
