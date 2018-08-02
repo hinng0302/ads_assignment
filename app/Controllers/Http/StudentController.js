@@ -26,6 +26,7 @@ class StudentController {
         var ret = false
         try{
             var count = await Student.where({studentID: studentID}).fetch()
+            count = count.toJSON()
             count = count.length
             console.log(count)
             if(count == 0){
