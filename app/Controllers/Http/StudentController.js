@@ -3,7 +3,9 @@ const Student = use('App/Models/Student')
 class StudentController {
     async list({response}){
         var student = await Student.fetch()
-        response.json(student)
+        var ret = {}
+        ret.data = student
+        response.json(ret)
     }
     async get({params, response}){
         var studentID = {studentID: parseInt(params.studentID)}

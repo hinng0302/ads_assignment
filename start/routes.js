@@ -36,6 +36,7 @@ Route.get('/api-specs', async({request, response})=>{
 	return swaggerSpec
 })
 Route.get('/', 'FrontController.index')
+Route.get('/front/student/listing', 'FrontController.studentlist')
 // Route.on('/').render('welcome')
 Route.get('/dept/test', 'DepartmentController.index')
 Route.get('/stud/test', 'StudentController.index')
