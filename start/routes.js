@@ -35,10 +35,11 @@ Route.get('/api-specs', async({request, response})=>{
 	delete swaggerSpec.paths.components
 	return swaggerSpec
 })
-Route.on('/').render('welcome')
+Route.get('/', 'FrontController.index')
+// Route.on('/').render('welcome')
 Route.get('/dept/test', 'DepartmentController.index')
 Route.get('/stud/test', 'StudentController.index')
-Route.get('/cour/test', 'CourseController.index')
+
 Route.get('/stud/groupbycouse', 'StudentController.groupbycouse')
 Route.get('/course/offer_by_depart/:depart_code/year/:year', 'CourseController.offerby_dept')
 Route.get('/course/offer_by_multi_depart/:depart_code1/:depart_code2/year/:year', 'CourseController.offerby_dept_or')
@@ -50,3 +51,15 @@ Route.group(()=>{
     Route.post('/', 'StudentController.edit')
     Route.delete('/', 'StudentController.delete')
 }).prefix('/student')
+
+
+Route.group(() => {
+    Route.get('/', 'CourseController.get')
+    Route.get('/:CourseID', 'CourseController.CourseDetails')
+    Route.put('/', 'CourseController.add')
+    Route.post('/', 'CourseController.edit')
+    Route.delete('/', 'CourseController.delete')
+
+    Route.get('/group_by_dept', 'CourseController.index2')
+
+}).prefix('/course')

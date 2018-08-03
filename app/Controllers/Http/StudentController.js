@@ -32,9 +32,13 @@ class StudentController {
             if(count == 0){
                 var stud = new Student(request.only(['studentID', 'student_name', 'DoB']))
                 await stud.save()
-                ret = true
+                ret = {
+                    success: true
+                }
             } else {
-                ret = false
+                ret = {
+                    error: 'studentID already exists'
+                }
             }
         }catch(e){
             console.log(e)
