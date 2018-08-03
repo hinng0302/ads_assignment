@@ -1,0 +1,28 @@
+include part/header.pug
+body
+include part/nav.pug
+ol(class="breadcrumb") 
+    li Student 
+    li  / Student Listing
+div(class="container")
+    div(class="row")
+        div(class="col-10 offset-md-1")
+            table(class="display" id="student_listing" style="100%")
+                thead
+                    tr
+                        th studentID
+                        th student_name
+                        th DoB
+                        th created_at
+                        th updated_at
+                tfoot
+                    tr
+                        th studentID
+                        th student_name
+                        th DoB
+                        th created_at
+                        th updated_at
+link(href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet")
+script(src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js")
+script
+    include script/student_listing_datatable.js
