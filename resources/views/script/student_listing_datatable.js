@@ -3,10 +3,6 @@ var table = $("#student_listing").DataTable({
     // "processing": true,
     // "serverSide": true,
     "ajax": "/student",
-    dom: 'Bfrtip',
-    buttons: [
-        'copy', 'excel', 'pdf'
-    ],
     "columns": [
         {data:'studentID'},
         {data:'student_name'},
