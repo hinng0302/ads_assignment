@@ -1,5 +1,12 @@
 components:
   schemas:
+    student_data_object:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/student_object'
     student_object:
       type: object
       properties:

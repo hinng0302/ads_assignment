@@ -28,7 +28,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/student_object'
+                  $ref: '#/components/schemas/student_data_object'
     put:
       tags:
         - student

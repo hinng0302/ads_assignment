@@ -64,5 +64,4 @@ Route.group(() => {
     Route.delete('/', 'CourseController.delete')
 
     Route.get('/group_by_dept', 'CourseController.index2')
-
 }).prefix('/course')
