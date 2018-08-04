@@ -2,7 +2,7 @@
 var table = $("#student_listing").DataTable({
     // "processing": true,
     // "serverSide": true,
-    "ajax": "/student",
+    "ajax": "/student/",
     "columns": [
         {data:'studentID'},
         {data:'student_name'},
