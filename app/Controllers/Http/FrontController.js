@@ -23,6 +23,10 @@ class FrontController {
             return view.render('home')
         }
     }
+    async logout({session, response}){
+        session.put('is_logged_in', null)
+        response.redirect('/')
+    }
 }
 
 module.exports = FrontController

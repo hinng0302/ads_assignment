@@ -10,6 +10,7 @@ div(class="container")
       |
       | 
       form(method="post" action="/login")
+        != csrfField()
         div(class="form-group")
           div(class="form-label-group")
             input(type="text" id="username" name="username" class="form-control" placeholder="User Name" required="required" autofocus="autofocus")

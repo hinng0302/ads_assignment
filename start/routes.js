@@ -38,6 +38,7 @@ Route.get('/api-specs', async({request, response})=>{
 
 Route.get('/', 'FrontController.index')
 Route.post('/login', 'FrontController.Login')
+Route.get('/logout', 'FrontController.logout')
 Route.get('/front/student/listing', 'FrontController.studentlist')
 // Route.on('/').render('welcome')
 Route.get('/dept/test', 'DepartmentController.index')
