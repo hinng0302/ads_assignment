@@ -7,20 +7,26 @@ class FrontController {
         if(is_login){
             response.redirect('/front/student/listing')
         }
-        return view.render('home')
+        return view.render('home', {is_login: is_login})
     }
     async studentlist({session, view}){
-        return view.render('student_listing')
+        var object = {
+            is_login: session.get('is_logged_in')
+        }
+        return view.render('student_listing', object)
     }
 
-    async Login({session, request, view}){
+    async Login({session, request, response}){
         console.log(request.all())
         var {username, password} = request.all(['username', 'password'])
         if(username == 'admin'&& password== 'admin'){
             session.put('is_logged_in', true)
-            return view.render('student_listing')
+            var object = {
+                is_login: true
+            }
+            response.redirect('/front/student/listing', object)
         } else {
-            return view.render('home')
+            response.redirect('/')
         }
     }
     async logout({session, response}){
