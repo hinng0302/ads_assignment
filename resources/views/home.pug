@@ -2,51 +2,22 @@ include part/header.pug
 body
 include part/nav.pug
 h1 Hello world, this is home page
+div(class="container")
+  div(class="card card-login mx-auto mt-5")
+    div(class="card-header") System Login
+      div(class="card-body")
+      body
+      |
+      | 
+      form(method="post" action="/login")
+        div(class="form-group")
+          div(class="form-label-group")
+            input(type="text" id="username" name="username" class="form-control" placeholder="User Name" required="required" autofocus="autofocus")
+            label(for="username") User name
 
- <body class="bg-dark">
+        div(class="form-group")
+          div(class="form-label-group")
+            input(type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required="required")
+            label(for="inputPassword") Password
 
-    <div class="container">
-      <div class="card card-login mx-auto mt-5">
-        <div class="card-header">System Login</div>
-        <div class="card-body">
-        <body>
-           
-      <form method="post" action="login.php">
-            <div class="form-group">
-              <div class="form-label-group">
-                <input type="text" id="username" name="username" class="form-control" placeholder="User Name" required="required" autofocus="autofocus">
-                <label for="username">User name</label>
-              </div>
-
-
-            </div>
-            <div class="form-group">
-              <div class="form-label-group">
-                <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required="required">
-                <label for="inputPassword">Password</label> 
-              </div>
-            </div>
-            </div>
-
-            
-            <input type="submit" name="submit" class="btn btn-primary btn-block" value="Login" />
-
-          </form>
-        </div>
-      </div>
-    </div>
-
-<!--<?php
-if (isset($_POST['submit'])) {
-  $username = "admin";
-  $password = "12345";
-  
-  if ($_POST['username'] == $username && $_POST['password'] == $password ) {
-  header("location: index.php");
-  } else {
-      echo '<script language="javascript">';
-      echo 'alert("Login Failed")';
-      echo '</script>';
-  }
-}
-?>-->
+        input(type="submit" name="submit" class="btn btn-primary btn-block" value="Login")
