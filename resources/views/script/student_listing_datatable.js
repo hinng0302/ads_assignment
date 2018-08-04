@@ -12,6 +12,4 @@ var table = $("#student_listing").DataTable({
     ]
 })
 // var table = $('#myTable').DataTable();
- 
-table.button( '1-1' ).text( 'Not available' );
 // })
