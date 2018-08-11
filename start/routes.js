@@ -39,9 +39,18 @@ Route.get('/api-specs', async({request, response})=>{
 Route.get('/', 'FrontController.index')
 Route.post('/login', 'FrontController.Login')
 Route.get('/logout', 'FrontController.logout')
-Route.get('/front/student/listing', 'FrontController.studentlist')
-Route.get('/front/student/create', 'FrontController.studentcreate')
-Route.get('/front/student/edit/:studentID', 'FrontController.studentedit')
+Route.group(()=>{
+    Route.get('/listing', 'FrontController.studentlist')
+    Route.get('/create', 'FrontController.studentcreate')
+    Route.get('/edit/:studentID', 'FrontController.studentedit')
+}).prefix('/front/student')
+Route.group(()=>{
+    Route.get('/listing', 'FrontController.courselist')
+    // Route.get('/create', 'FrontController.studentcreate')
+    // Route.get('/edit/:studentID', 'FrontController.studentedit')
+}).prefix('/front/course')
+
+
 // Route.on('/').render('welcome')
 Route.get('/dept/test', 'DepartmentController.index')
 Route.get('/stud/test', 'StudentController.index')

@@ -28,7 +28,12 @@ class FrontController {
         }
         return view.render('student_edit', object)
     }
-
+    async courselist({session, view}){
+        var object = {
+            is_login: session.get('is_logged_in')
+        }
+        return view.render('course_listing', object)
+    }
     async Login({session, request, response}){
         console.log(request.all())
         var {username, password} = request.all(['username', 'password'])

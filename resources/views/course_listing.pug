@@ -2,8 +2,8 @@ include part/header.pug
 body
 include part/nav.pug
 ol(class="breadcrumb") 
-    li Student 
-    li  / Student Listing
+    li Course  
+    li  / Course Listing
     
 div(class="container")
     div(class="row")
@@ -11,14 +11,23 @@ div(class="container")
             table(class="display" id="student_listing" style="100%")
                 thead
                     tr
-                        th studentID
-                        th student_name
-                        th DoB
+                        th CourseID
+                        th Title
+                        th Level
                         th created_at
                         th updated_at
                         th Edit
                         th Delete
+                //- tfoot
+                //-     tr
+                //-         th CourseID
+                //-         th Title
+                //-         th Level
+                //-         th created_at
+                //-         th updated_at
+                //-         th Edit
+                //-         th Delete
 link(href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet")
 script(src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js")
 script
-    include script/student_listing_datatable.js
+    include script/course_listing_datatable.js
