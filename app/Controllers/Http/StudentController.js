@@ -8,7 +8,7 @@ class StudentController {
         response.json(ret)
     }
     async get({params, response}){
-        var studentID = {studentID: parseInt(params.studentID)}
+        var studentID = {studentID: params.studentID}
         console.log(studentID)
         const Enrolled = use('App/Models/Enrolled')
         var ret = {
@@ -16,7 +16,9 @@ class StudentController {
             Enrolled: []
         }
         var stud = await Student.where(studentID).first()
+        console.log(stud)
         var enrolled = await Enrolled.where(studentID).fetch()
+        console.log(enrolled)
         ret.Student = stud
         ret.Enrolled = enrolled
         response.json(ret)
@@ -53,9 +55,8 @@ class StudentController {
         var ret = {}
         var {studentID, student_name, DoB } = request.all(['studentID', 'student_name', 'DoB'])
         var stud = await Student.where(
-            { studentID: parseInt(studentID) },
+            { studentID: studentID },
         ).update({
-            studentID:studentID,
             student_name:student_name,
             DoB: DoB,
         })

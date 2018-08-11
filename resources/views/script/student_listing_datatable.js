@@ -16,22 +16,33 @@ var table = $("#student_listing").DataTable({
         },
         {
             data: 'Delete',
-            "defaultContent": "<button id='Delete' class='btn btn-xs btn-delete btn-block'>Delete</button>",
+            "defaultContent": "<button id='Delete' class='btn btn-xs btn-danger btn-block'>Delete</button>",
             "targets": -1
         }
     ],
-    // "column": [
-    //     null,
-    //     null,
-    //     null,
-    //     null,
-    //     null,
-    //     {
-    //         "data": null,
-    //         "defaultContent": "<button>Edit</button>",
-    //         "targets": -1
-    //     }
-    // ]
 })
-// var table = $('#myTable').DataTable();
-// })
+
+$("#student_listing").on('click', 'button.btn-warning', function(){
+    var data = table.row( $(this).parents('tr') ).data()
+    var studentID = data['studentID']
+    window.location = '/front/student/edit/'+studentID
+})
+$("#student_listing").on('click', 'button.btn-danger', function(){
+    var data = table.row( $(this).parents('tr') ).data()
+    var studentID = data['studentID']
+    $.ajax({
+        url: '/student',
+        type: 'DELETE',
+        data: JSON.stringify({
+            "studentID": studentID
+        }),
+        headers: {
+            "Content-Type": "application/json",
+            "accept": 'application/json'
+        },
+        success: function(data){
+            window.location = "/front/student/listing"
+        }
+    })
+
+})

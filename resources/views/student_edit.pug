@@ -1,0 +1,50 @@
+include part/header.pug
+body
+include part/nav.pug
+ol(class="breadcrumb") 
+    li Student 
+    li  / Student Edit / 
+    li=studentID
+div(class="container")
+    div(class="row")
+        div(class="col-6 offset-md-3")
+            div(class="text-center mb-4")
+                h1(class="h3 mb-3 font-weight-normal") Edit Student
+            include part/student_form.pug
+            button(class="btn btn-lg btn-primary btn-block" id="createButton" type="submit") Save
+script.
+    var studentID=#{studentID}
+    $.ajax({
+        url: '/student/'+studentID,
+        headers: {
+                "Content-Type": "application/json",
+                "accept": 'application/json'
+        },
+        success: function(data){
+            var student_obj = data.Student
+            $('#StudentId').val(student_obj.studentID).prop('disabled', true)
+            $('#StudentName').val(student_obj.student_name)
+            $('#DOB').val(student_obj.DoB)
+        }
+    })
+    $('#createButton').on('click', function(){
+        var student_id = $('#StudentId').val()
+        var studentname = $('#StudentName').val()
+        var DOB = $('#DOB').val()
+        $.ajax({
+            url: '/student',
+            method: 'POST',
+            headers: {
+                    "Content-Type": "application/json",
+                    "accept": 'application/json'
+            },
+            data: JSON.stringify({
+                "studentID": student_id,
+                "student_name": studentname,
+                "DoB": DOB
+            }),
+            success: function(data){
+                window.location = "/front/student/listing"
+            }
+        })
+    })

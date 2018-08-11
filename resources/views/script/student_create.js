@@ -16,8 +16,6 @@ $(document).ready(function(){
                 "accept": 'application/json'
             },
             success: function(data){
-                // console.log(data)
-                // var data = JSON.(data)
                 if(data.success == true){
                     window.location = "/front/student/listing"
                 }
