@@ -1,5 +1,5 @@
 var table = $("#student_listing").DataTable({
-    "ajax": "/course",
+    "ajax": "/department",
     "searchable": false,
     "columnDefs": [
         {
@@ -8,9 +8,9 @@ var table = $("#student_listing").DataTable({
         }
       ],
     "columns": [
-        {data:'CourseID'},
-        {data:'Title'},
-        {data:'Level'},
+        {data:'DeptID'},
+        {data:'DeptName'},
+        {data:'Location'},
         {data:'created_at'},
         {data:'updated_at'},
         {

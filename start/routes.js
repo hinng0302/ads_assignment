@@ -43,16 +43,26 @@ Route.group(()=>{
     Route.get('/listing', 'FrontController.studentlist')
     Route.get('/create', 'FrontController.studentcreate')
     Route.get('/edit/:studentID', 'FrontController.studentedit')
+    Route.get('/details/:studentID', 'FrontController.studentdetails')
 }).prefix('/front/student')
+
 Route.group(()=>{
     Route.get('/listing', 'FrontController.courselist')
-    // Route.get('/create', 'FrontController.studentcreate')
+    Route.get('/create', 'FrontController.coursecreate')
     // Route.get('/edit/:studentID', 'FrontController.studentedit')
 }).prefix('/front/course')
+Route.group(()=>{
+    Route.get('/create', 'FrontController.departmentcreate')
+    Route.get('/listing', 'FrontController.departmentlist')
+}).prefix('/front/department')
 
 
 // Route.on('/').render('welcome')
-Route.get('/dept/test', 'DepartmentController.index')
+Route.group(()=>{
+    Route.get('/', 'DepartmentController.index')
+    Route.put('/', 'DepartmentController.add')
+}).prefix('/department')
+
 Route.get('/stud/test', 'StudentController.index')
 
 Route.get('/stud/groupbycouse', 'StudentController.groupbycouse')
@@ -74,6 +84,5 @@ Route.group(() => {
     Route.put('/', 'CourseController.add')
     Route.post('/', 'CourseController.edit')
     Route.delete('/', 'CourseController.delete')
-
     Route.get('/group_by_dept', 'CourseController.index2')
 }).prefix('/course')

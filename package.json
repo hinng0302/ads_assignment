@@ -27,10 +27,13 @@
     "@adonisjs/session": "^1.0.26",
     "@adonisjs/shield": "^1.0.6",
     "adonis-pug": "^4.1.0",
+    "got": "^9.0.0",
     "lucid-mongo": "^3.1.0",
     "swagger-jsdoc": "^1.10.3"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@fortawesome/fontawesome-free": "^5.2.0"
+  },
   "autoload": {
     "App": "./app"
   }

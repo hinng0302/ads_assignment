@@ -3,7 +3,48 @@ const Department = use('App/Models/Department')
 class DepartmentController {
     async index({response}){
         var Dep = await Department.fetch()
-        response.json(Dep)
+        response.json({data:Dep})
+    }
+    async add({request, response}){
+        var DeptID = request.only(['DeptID'])
+        console.log(DeptID)
+        var ret = {}
+        var count = await Department.where({ DeptID: DeptID}).fetch()
+        count = count.toJSON()
+        if(count.length == 0){
+            var department = new Department(request.only(['DeptID', 'DeptName', 'Location']))
+            await department.save()
+            ret = {
+                success: true
+            }
+        }else {
+            ret = {
+                error: 'DeptID already exists'
+            }
+        }
+        response.json(ret)
+    }
+    async edit({request, response}){
+        var ret = {}
+        var {DeptID, DeptName, location} = request.only(['DeptID', 'DeptName', 'Location'])
+        var department = await Department.where({
+            DeptID: DeptID
+        }).update({
+            DeptID: DeptID,
+            DeptName: DeptName, 
+            Location: location
+        })
+        department.toJSON()
+        if(department['mModified'] == 1){
+            ret = {
+                success: true
+            }
+        } else {
+            ret = {
+                success: false
+            }
+        }
+        response.json(ret)
     }
 }
 

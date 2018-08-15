@@ -1,0 +1,30 @@
+nav(class="col-md-2 d-none d-md-block bg-light sidebar")
+    div(class="sidebar-sticky")
+        ul(class="nav flex-column")
+            li(class="nav-item dropdown")
+                a(class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false") 
+                    i(class="fas fa-user-graduate") Student
+                div(class="dropdown-menu" aria-labelledby="dropdown01")
+                    a(class="dropdown-item" href="/front/student/create") 
+                        i(class="fas fa-plus-circle") Create
+                    a(class="dropdown-item" href="/front/student/listing") 
+                        i(class="fas fa-list-ul") List
+            li(class="nav-item dropdown")
+                a(class="nav-link dropdown-toggle" href="#"  id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false")
+                    i(class="fas fa-chalkboard-teacher") Crouse
+                div(class="dropdown-menu" aria-labelledby="dropdown02")
+                    a(class="dropdown-item" href="/front/course/create") 
+                        i(class="fas fa-plus-circle") Create
+                    a(class="dropdown-item" href="/front/course/listing") 
+                        i(class="fas fa-list-ul") List
+            li(class="nav-item dropdown")
+                a(class="nav-link dropdown-toggle" href="#" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false")
+                    i(class="fas fa-school") Department
+                div(class="dropdown-menu" aria-labelledby="dropdown03")
+                    a(class="dropdown-item" href="/front/department/create") 
+                        i(class="fas fa-plus-circle") Create
+                    a(class="dropdown-item" href="/front/department/listing") 
+                        i(class="fas fa-list-ul") List
+            li(class="nav-item")
+                a(class="nav-link" href="/logout")
+                    i(class="fas fa-sign-out-alt") Logout

@@ -136,7 +136,8 @@ module.exports = {
     methods: ['POST', 'PUT', 'DELETE'],
     filterUris: [
       '/student',
-      // '/login'
+      '/course',
+      '/department'
     ],
     cookieOptions: {
       httpOnly: false,

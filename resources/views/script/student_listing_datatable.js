@@ -10,24 +10,23 @@ var table = $("#student_listing").DataTable({
         {data:'created_at'},
         {data:'updated_at'},
         {
-            data: 'Edit',
-            "defaultContent": "<button type='Edit' class='btn btn-xs btn-warning btn-block'>Edit</button>",
+            data: 'Action',
+            "defaultContent": "<i class=\"far fa-edit\" style=\"cursor: pointer;\"></i> / <i class=\"far fa-trash-alt button\" style=\"cursor: pointer;\"></i>",
             "targets": -1
         },
-        {
-            data: 'Delete',
-            "defaultContent": "<button id='Delete' class='btn btn-xs btn-danger btn-block'>Delete</button>",
-            "targets": -1
-        }
     ],
 })
-
-$("#student_listing").on('click', 'button.btn-warning', function(){
+$("#student_listing tbody").on('click', 'tr', function(){
+    var row = table.row( this ).data()
+    var studentID = row['studentID']
+    window.location = '/front/student/details/'+studentID
+})
+$("#student_listing").on('click', 'i.fa-edit', function(){
     var data = table.row( $(this).parents('tr') ).data()
     var studentID = data['studentID']
     window.location = '/front/student/edit/'+studentID
 })
-$("#student_listing").on('click', 'button.btn-danger', function(){
+$("#student_listing").on('click', 'i.fa-trash-alt', function(){
     var data = table.row( $(this).parents('tr') ).data()
     var studentID = data['studentID']
     $.ajax({

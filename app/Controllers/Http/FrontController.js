@@ -1,5 +1,5 @@
 'use strict'
-
+const got = use('got')
 class FrontController {
     async index({session, view, response}){
         var is_login = session.get('is_logged_in')
@@ -28,11 +28,44 @@ class FrontController {
         }
         return view.render('student_edit', object)
     }
+    async studentdetails({session,params ,view}){
+        var studentID = params.studentID
+        console.log('localhost:3333/student/'+studentID)
+        var result = await got('http://localhost:3333/student/'+studentID)
+        console.log('/student/'+studentID)
+        result = JSON.parse(result.body)
+        console.log(result)
+        var object = {
+            is_login: session.get('is_logged_in'),
+            Student: result.Student,
+            Enrolled: result.Enrolled
+        }
+
+        return view.render('student_details', object)
+    }
     async courselist({session, view}){
         var object = {
             is_login: session.get('is_logged_in')
         }
         return view.render('course_listing', object)
+    }
+    async coursecreate({session, view}){
+        var object = {
+            is_login: session.get('is_logged_in')
+        }
+        return view.render('course_create', object)
+    }
+    async departmentlist({session, view}){
+        var object = {
+            is_login: session.get('is_logged_in')
+        }
+        return view.render('dept_listing', object)
+    }
+    async departmentcreate({session, view}){
+        var object = {
+            is_login: session.get('is_logged_in')
+        }
+        return view.render('dept_create', object)
     }
     async Login({session, request, response}){
         console.log(request.all())
