@@ -3,8 +3,12 @@
 const Model = use('Model')
 
 class Offer extends Model {
-    Courses(){
-        return this.embedsMany('App/Models/Course', 'CourseID', 'CourseID')
+    offer_course(){
+        return this.referMany('App/Models/Department', '_id', 'DeptID')
+    }
+
+    Course(){
+        return this.embedsOne('App/Models/Course', 'CourseID', 'CourseID')
     }
 }
 

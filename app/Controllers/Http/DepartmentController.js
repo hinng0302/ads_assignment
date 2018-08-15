@@ -46,6 +46,12 @@ class DepartmentController {
         }
         response.json(ret)
     }
+
+    async department_corse({request, response}){
+        var department = await Department.with('Offers').fetch()
+        console.log(Department.with('Offers').toSQL())
+        response.json(department)
+    }
 }
 
 module.exports = DepartmentController

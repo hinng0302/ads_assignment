@@ -1,6 +1,6 @@
 var table = $("#student_listing").DataTable({
     "ajax": "/course",
-    "searchable": false,
+    "searching": false,
     "columnDefs": [
         {
             targets: -1,

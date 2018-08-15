@@ -14,6 +14,7 @@
 */
 
 const Route = use('Route')
+Route.get('_test', 'DepartmentController.department_corse')
 const swaggerJSDoc = use('swagger-jsdoc')
 Route.get('/api-specs', async({request, response})=>{
     const options = {

@@ -1,5 +1,6 @@
 'use strict'
 const Student = use('App/Models/Student')
+const Department = use('App/Models/Department')
 class StudentController {
     async list({response}){
         var student = await Student.fetch()
@@ -9,18 +10,32 @@ class StudentController {
     }
     async get({params, response}){
         var studentID = {studentID: params.studentID}
-        console.log(studentID)
+        
         const Enrolled = use('App/Models/Enrolled')
+        
         var ret = {
             Student: {},
             Enrolled: []
         }
+
         var stud = await Student.where(studentID).first()
-        console.log(stud)
         var enrolled = await Enrolled.where(studentID).fetch()
-        console.log(enrolled)
+        var dept = await Department.fetch()
+        dept = dept.toJSON()
         ret.Student = stud
+        enrolled = enrolled.toJSON()
+        for(var enroll of enrolled){
+            for(var temp of dept){
+                if(temp['_id'] == enroll['DeptID']){
+                    enroll['DeptID'] = temp['DeptName']
+                }
+            }
+        }
         ret.Enrolled = enrolled
+            // console.log(row)
+            // var temp2[temp['_id']] = temp['DeptName']
+            // DeptId = { ...DeptId, ...temp}
+        // )
         response.json(ret)
     }
 
