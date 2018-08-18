@@ -33,22 +33,23 @@ div(class="container-fluid")
                                     td=Student.DoB
                         br
                         H3 
-                            i(class="fas fa-check") Enrolled
+                            i(class="fas fa-check") Enrolled 
+                        botton(id="add_Course" class="btn btn-primary") add course
                         br
                         table(class="table table-hover" id="enrollment_listing" style="100%")
                             thead
                                 tr
                                     th studentID
                                     th courseID
-                                    th deptID
-                                    th created_at
-                                    th updated_at
+                                    th course name
+                                    th Enroll Date
                                     th action
                         link(href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet")
                         script(src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js")
                         script.
                             var studentID =#{studentID};
                             $("#enrollment_listing").DataTable({
+                                "paging": false,
                                 "searching": false,
                                 "ajax": {
                                     "url":'/student/'+studentID,
@@ -59,12 +60,33 @@ div(class="container-fluid")
                                    { data: 'courseID' },
                                    { data: 'DeptID' },
                                    { data: 'created_at' },
-                                   { data: 'updated_at' },
                                    {
                                        data: 'Action',
                                        "defaultContent": "<i class=\"far fa-edit\"  style=\"cursor: pointer;\"></i> / <i class=\"far fa-trash-alt button\" style=\"cursor: pointer;\"></i>",
                                        "targets": -1
                                    },
                                 ]
-
+                            })
+                            $('#add_Course').on('click', function(){
+                                $("#enrollment_listing").DataTable().destroy();
+                                var dt = $("#enrollment_listing").DataTable({
+                                    "searching": false,
+                                    "paging": false,
+                                    "ajax": {
+                                        "url":'/student',
+                                    },
+                                    "columns": [
+                                        {data:'studentID'},
+                                        {data:'student_name'},
+                                        {data:'DoB'},
+                                        {data:'created_at'},
+                                        {data:'updated_at'},
+                                        {
+                                            data: 'Action',
+                                            "defaultContent": "<i class=\"far fa-edit\"  style=\"cursor: pointer;\"></i> / <i class=\"far fa-trash-alt button\" style=\"cursor: pointer;\"></i>",
+                                            "targets": -1
+                                        },
+                                    ],
+                                })
+                                dt.ajax.reload();
                             })
