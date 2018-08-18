@@ -34,17 +34,42 @@ div(class="container-fluid")
                         br
                         H3 
                             i(class="fas fa-check") Enrolled 
-                        botton(id="add_Course" class="btn btn-primary") add course
                         br
-                        table(class="table table-hover" id="enrollment_listing" style="100%")
-                            thead
-                                tr
-                                    th studentID
-                                    th courseID
-                                    th course name
-                                    th Year
-                                    th Enroll Date
-                                    th action
+                        div(class="container")
+                            div(class="row")
+                                div(class="col-12") Search
+                            div(class="row")
+                                div(class="input-group col-3")
+                                    div(class="input-group-prepend")
+                                        label(class="input-group-text"  for="yearselect") Year
+                                    select(name="year" id="yearselect" class="custom-select" multiple)
+                                            option(value='--') All
+                                            option(value='2018') 2018
+                                            option(value='2017') 2017
+                                            option(value='2016') 2016
+                                            option(value='2015') 2015
+                                            option(value='2014') 2014
+                                div(class="col-5")
+                                    div(class="input-group-prepend")
+                                        label(class="input-group-text"  for="Department") Department
+                                        select(name="deptID" id="Department" class="custom-select")
+                                                option(value='--') All
+                                                option(value='CS') CS
+                                                option(value='IS') IS
+                                div(class="col-4")
+                                    botton(id="add_Course" class="btn btn-primary") Search
+                
+                            div(class="row")
+                                div(class="col-12")
+                                    table(class="table table-hover" id="enrollment_listing" style="100%")
+                                        thead
+                                            tr
+                                                th studentID
+                                                th courseID
+                                                th course name
+                                                th Year
+                                                th Enroll Date
+                                                th action
                         link(href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet")
                         script(src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js")
                         script.
@@ -75,14 +100,20 @@ div(class="container-fluid")
                                     "searching": false,
                                     "paging": false,
                                     "ajax": {
-                                        "url":'/student',
+                                        "url":'/student/'+studentID,
+                                        "type": 'GET',
+                                        "data": JSON.parse(JSON.stringify({
+                                            Year:$('#yearselect').val(),
+                                            courseID:$('#Department').val(),
+                                        })),
+                                        "dataSrc": "Enrolled"
                                     },
                                     "columns": [
-                                        {data:'studentID'},
-                                        {data:'student_name'},
-                                        {data:'DoB'},
-                                        {data:'created_at'},
-                                        {data:'updated_at'},
+                                        { data: 'studentID' },
+                                        { data: 'courseID' },
+                                        { data: 'DeptID' },
+                                        { data: 'Year'},
+                                        { data: 'created_at' },
                                         {
                                             data: 'Action',
                                             "defaultContent": "<i class=\"far fa-edit\"  style=\"cursor: pointer;\"></i> / <i class=\"far fa-trash-alt button\" style=\"cursor: pointer;\"></i>",

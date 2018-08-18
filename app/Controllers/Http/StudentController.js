@@ -8,7 +8,10 @@ class StudentController {
         ret.data = student
         response.json(ret)
     }
-    async get({params, response}){
+    async get({params,request, response}){
+        // console.log(request.all())
+        var {Year, courseID} = request.all(['Year', 'courseID'])
+        console.log(Year+', '+courseID)
         var studentID = {studentID: params.studentID}
         
         const Enrolled = use('App/Models/Enrolled')

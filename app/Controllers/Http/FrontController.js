@@ -1,4 +1,5 @@
 'use strict'
+const Env = use('Env')
 const got = use('got')
 class FrontController {
     async index({session, view, response}){
@@ -30,8 +31,8 @@ class FrontController {
     }
     async studentdetails({session,params ,view}){
         var studentID = params.studentID
-        console.log('localhost:3333/student/'+studentID)
-        var result = await got('http://localhost:3333/student/'+studentID)
+        console.log(Env.get('APP_URL')+'/student/'+studentID)
+        var result = await got(Env.get('APP_URL')+'/student/'+studentID)
         console.log('/student/'+studentID)
         result = JSON.parse(result.body)
         console.log(result)
