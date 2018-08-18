@@ -31,8 +31,8 @@ class FrontController {
     }
     async studentdetails({session,params ,view}){
         var studentID = params.studentID
-        console.log('/student/'+studentID)
-        var result = await got('/student/'+studentID)
+        console.log(Env.get('DEFAULT_DMOAIN', 'http://jameshome2004.ddns.net')+'/student/'+studentID)
+        var result = await got(Env.get('DEFAULT_DMOAIN', 'http://jameshome2004.ddns.net')+'/student/'+studentID)
         console.log('/student/'+studentID)
         result = JSON.parse(result.body)
         console.log(result)
