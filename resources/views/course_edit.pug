@@ -1,0 +1,54 @@
+include part/header.pug
+body
+include part/nav.pug
+div(class="container-fluid")
+    div(class="row")
+        include part/side-menu.pug
+        main(class="col-md-9 ml-sm-auto col-lg-10 px-4" role="main")
+            ol(class="breadcrumb") 
+                li Course 
+                li  / Course Edit
+            div(class="container")
+                div(class="row")
+                    div(class="col-6 offset-md-3")
+                        div(class="text-center mb-4")
+                            h1(class="h3 mb-3 font-weight-normal") Course Edit
+                        include part/course_form.pug
+                        button(class="btn btn-lg btn-primary btn-block" id="createButton" type="submit") Save
+            script.
+                var courseID="#{courseID}";
+                //- alert(courseID);
+                $.ajax({
+                    url: '/course/'+courseID,
+                    headers: {
+                        "Content-Type": "application/json",
+                        "accept": 'application/json'
+                    },
+                    success: function(data){
+                        var course_obj = data.course
+                        $('#CourseID').val(course_obj.CourseID).prop('disabled', true)
+                        $('#Title').val(course_obj.Title)
+                        $('#Level').val(course_obj.Level)
+                    }
+                })
+                $('#createButton').on('click', function(){
+                    var courseID = $('#CourseID').val()
+                    var title = $('#Title').val()
+                    var level = $('#Level').val()
+                    $.ajax({
+                        url: '/course',
+                        method: 'POST',
+                        headers: {
+                            "Content-Type": "application/json",
+                            "accept": 'application/json'
+                        },
+                        data: JSON.stringify({
+                            CourseID: courseID,
+                            Title: title,
+                            Level: level
+                        }),
+                        success: function(data){
+                            window.location = "/front/course/listing"
+                        }
+                    })
+                })
