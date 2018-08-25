@@ -31,8 +31,9 @@ class FrontController {
     }
     async studentdetails({session,params ,view}){
         var studentID = params.studentID
-        console.log(Env.get('DEFAULT_DMOAIN', 'http://jameshome2004.ddns.net')+'/student/'+studentID)
-        var result = await got(Env.get('DEFAULT_DMOAIN', 'http://jameshome2004.ddns.net')+'/student/'+studentID)
+        // console.log(Env.get('APP_URL', '0.0.0.0')+'/student/'+studentID)
+        // var result = await got(Env.get('DEFAULT_DMOAIN', 'http://jameshome2004.ddns.net')+'/student/'+studentID)
+        var result = await got('http://localhost:3333'+'/student/'+studentID)
         console.log('/student/'+studentID)
         result = JSON.parse(result.body)
         console.log(result)
