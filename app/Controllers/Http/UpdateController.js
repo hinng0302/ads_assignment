@@ -41,7 +41,7 @@ class UpdateController {
         const EmbedStudent = use('App/Models/EmbedStudent')
         var query = {studentID: params.studentID}
         console.log(query)
-        var student = await EmbedStudent.where(query).fetch()
+        var student = await EmbedStudent.where(query).first()
         student = student.toJSON()
         response.json(student)
     }
@@ -102,7 +102,7 @@ class UpdateController {
     async getCourse({params, response}){
         const EmbedCourse = use('App/Models/EmbedCourse')
         var query = {CourseID: params.CourseID}
-        var emb_course = await EmbedCourse.where(query).fetch()
+        var emb_course = await EmbedCourse.where(query).first()
         response.json(emb_course)
     }
 }
