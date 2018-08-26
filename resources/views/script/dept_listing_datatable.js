@@ -29,6 +29,7 @@ $("#student_listing").on('click', 'i.fa-edit', function(){
 
 $("#student_listing tbody").on('click', 'tr', function(){
     var data = table.row( $(this).parents('tr') ).data()
+    console.log(data)
     var DeptID = data['DeptID']
     window.location = '/front/department/details/'+DeptID
 })
