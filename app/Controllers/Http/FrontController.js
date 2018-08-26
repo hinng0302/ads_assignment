@@ -95,11 +95,31 @@ class FrontController {
     }
     async departmentedit({session, params, view}){
         var DeptID = params.DeptID
+        var result = await got(Env.get('DEFAULT_DOMAIN')+'/update/getdept/'+CourseID)
+        result = JSON.parse(result.body)
+        var object = {
+            is_login: session.get('is_logged_in'),
+            DeptID: DeptID,
+            Department: result.Department,
+            enrolled: result.Enrolled
+        }
+        return view.render('dept_edit', object)
+    }
+    async departmentdetails({session, params, view}){
+        var DeptID = params.DeptID
         var object = {
             is_login: session.get('is_logged_in'),
             DeptID: DeptID
         }
-        return view.render('dept_edit', object)
+        return view.render('dept_details', object)
+    }
+    async departmentNewCourse({session, params, view}){
+        var DeptID = params.DeptID
+        var object = {
+            is_login: session.get('is_logged_in'),
+            DeptID: DeptID
+        }
+        return view.render('dept_new_course', object)
     }
     async Login({session, request, response}){
         console.log(request.all())

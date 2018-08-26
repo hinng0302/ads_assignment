@@ -27,6 +27,12 @@ $("#student_listing").on('click', 'i.fa-edit', function(){
     window.location = '/front/department/edit/'+DeptID
 })
 
+$("#student_listing tbody").on('click', 'i.fa-edit', function(){
+    var data = table.row( $(this).parents('tr') ).data()
+    var DeptID = data['DeptID']
+    window.location = '/front/department/details/'+DeptID
+})
+
 $("#student_listing").on('click', 'i.fa-trash-alt', function(){
     var data = table.row( $(this).parents('tr') ).data()
     var DeptID = data['DeptID']

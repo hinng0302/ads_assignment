@@ -1,0 +1,128 @@
+include part/header.pug
+body
+include part/nav.pug
+div(class="container-fluid")
+    div(class="row")
+        include part/side-menu.pug
+        main(class="col-md-9 ml-sm-auto col-lg-10 px-4" role="main")
+            ol(class="breadcrumb") 
+                li Department
+                li  / Department Details / 
+                li=Department.DeptID
+                - var DeptID =Department.DeptID
+            div(class="container")
+                div(class="row")
+                    div(class="col-10 offset-md-1")
+                        H3 
+                            i(class="fas fa-user-alt") Department
+                        br
+                        table(class="table table-condensed")
+                            thead
+                                tr
+                                    th Department info
+                                    th details
+                            tbody
+                                tr
+                                    th Department ID
+                                    td=Department.DeptID
+                                tr
+                                    th Department Name
+                                    td=Department.DeptName
+                                tr
+                                    th Location
+                                    td=Department.Location
+                        br
+                        H3 
+                            i(class="fas fa-check") Offer
+                        br
+                        div(class="container")
+                            div(class="row")
+                                div(class="col-12") Search
+                            div(class="row")
+                                div(class="input-group col-3")
+                                    div(class="input-group-prepend")
+                                        label(class="input-group-text"  for="yearselect") Year
+                                    select(name="year" id="yearselect" class="custom-select" multiple)
+                                            option(value='--') All
+                                            option(value='2018') 2018
+                                            option(value='2017') 2017
+                                            option(value='2016') 2016
+                                            option(value='2015') 2015
+                                            option(value='2014') 2014
+                                div(class="col-5")
+                                    div(class="input-group-prepend")
+                                        label(class="input-group-text"  for="Department") Department
+                                        select(name="deptID" id="Department" class="custom-select")
+                                                option(value='--') All
+                                                option(value='CS') CS
+                                                option(value='IS') IS
+                                div(class="col-4")
+                                    botton(id="add_Course" class="btn btn-primary") Search
+                
+                            div(class="row")
+                                div(class="col-12")
+                                    table(class="table table-hover" id="enrollment_listing" style="100%")
+                                        thead
+                                            tr
+                                                th CourseID
+                                                th Year
+                                                th ClassSize
+                                                th AvaliablePlaces
+                                                th created at
+                                                th updated at
+                                                th Action
+                        link(href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet")
+                        script(src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js")
+                        script.
+                            var DeptID =#{DeptID};
+                            $("#enrollment_listing").DataTable({
+                                "paging": false,
+                                "searching": false,
+                                "ajax": {
+                                    "url":'/update/getDept/'+DeptID,
+                                    "dataSrc": "Enrolled"
+                                },
+                                "columns": [
+                                   { data: 'CourseID' },
+                                   { data: 'Year' },
+                                   { data: 'ClassSize' },
+                                   { data: 'AvaliablePlaces'},
+                                   { data: 'created_at' },
+                                   { data: 'updated_at'}
+                                   {
+                                       data: 'Action',
+                                       "defaultContent": "<i class=\"far fa-edit\"  style=\"cursor: pointer;\"></i> / <i class=\"far fa-trash-alt button\" style=\"cursor: pointer;\"></i>",
+                                       "targets": -1
+                                   },
+                                ]
+                            })
+                            $('#add_Course').on('click', function(){
+                                $("#enrollment_listing").DataTable().destroy();
+                                var dt = $("#enrollment_listing").DataTable({
+                                    "searching": false,
+                                    "paging": false,
+                                    "ajax": {
+                                        "url":'/update/getDept/'+DeptID,
+                                        "type": 'GET',
+                                        "data": JSON.parse(JSON.stringify({
+                                            Year:$('#yearselect').val(),
+                                            courseID:$('#Department').val(),
+                                        })),
+                                        "dataSrc": "Enrolled"
+                                    },
+                                    "columns": [
+                                        { data: 'CourseID' },
+                                        { data: 'Year' },
+                                        { data: 'ClassSize' },
+                                        { data: 'AvaliablePlaces'},
+                                        { data: 'created_at' },
+                                        { data: 'updated_at'}
+                                        {
+                                            data: 'Action',
+                                            "defaultContent": "<i class=\"far fa-edit\"  style=\"cursor: pointer;\"></i> / <i class=\"far fa-trash-alt button\" style=\"cursor: pointer;\"></i>",
+                                            "targets": -1
+                                        },
+                                    ],
+                                })
+                                dt.ajax.reload();
+                            })
