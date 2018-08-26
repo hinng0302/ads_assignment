@@ -165,7 +165,7 @@ class UpdateController {
                 Department: department,
                 Offer: offer
             }
-            ret = department
+            ret = ret
             ret = {...query, ...ret}
             var embeddepar = new EmbedDepartment(ret)
             await embeddepar.save()
