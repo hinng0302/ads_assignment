@@ -15,7 +15,7 @@ div(class="container")
 script.
     var studentID=#{studentID}
     $.ajax({
-        url: '/student/'+studentID,
+        url: '/update/getstudent/'+studentID,
         headers: {
                 "Content-Type": "application/json",
                 "accept": 'application/json'
