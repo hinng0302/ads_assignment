@@ -52,9 +52,10 @@ class DepartmentController {
     }
     async delete({request, response}){
         var {DeptID } = request.all(['DeptID'])
-        console.log('DELETE: '+DeptID.DeptID)
-        var department = await Department.where({ DeptID:DeptID.DeptID }).delete()
-        await got('http://40.74.84.116'+ '/update/dept/'+DeptID.DeptID)
+        console.log('DELETE: '+DeptID)
+        var query = {DeptID: DeptID}
+        var department = await Department.where(query).delete()
+        await got('http://40.74.84.116'+ '/update/dept/'+ DeptID)
         response.json(department)
     }
     async department_corse({request, response}){
