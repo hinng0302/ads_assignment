@@ -28,7 +28,7 @@ class DepartmentController {
     }
     async edit({request, response}){
         var ret = {}
-        var {DeptID, DeptName, location} = request.only(['DeptID', 'DeptName', 'Location'])
+        var {DeptID, DeptName, location} = request.only(['DeptID', 'DeptName', 'location'])
         var department = await Department.where({
             DeptID: DeptID
         }).update({
