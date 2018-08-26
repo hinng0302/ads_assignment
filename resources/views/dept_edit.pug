@@ -32,8 +32,8 @@ div(class="container-fluid")
                 })
                 $('#createButton').on('click', function(){
                     var DeptID = $('#DeptID').val()
-                    var title = $('#Title').val()
-                    var level = $('#Level').val()
+                    var DeptName = $('#DeptName').val()
+                    var location = $('#Location').val()
                     $.ajax({
                         url: '/Department',
                         method: 'POST',
@@ -43,8 +43,8 @@ div(class="container-fluid")
                         },
                         data: JSON.stringify({
                             DeptID: DeptID,
-                            Title: title,
-                            Level: level
+                            DeptName: DeptName,
+                            Location: location
                         }),
                         success: function(data){
                             window.location = "/front/Department/listing"
