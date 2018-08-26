@@ -120,7 +120,7 @@ class FrontController {
     async departmentaddOffer({session, params, view}){
         var DeptID = params.DeptID
         var result = await got(Env.get('DEFAULT_DOMAIN')+'/update/getdept/'+DeptID)
-        result = JOSN.parse(result.body)
+        result = JSON.parse(result.body)
         var object = {
             is_login: session.get('is_logged_in'),
             DeptID: DeptID,
