@@ -31,7 +31,7 @@ $("#student_listing").on('click', 'i.fa-trash-alt', function(){
     var data = table.row( $(this).parents('tr') ).data()
     var DeptID = data['DeptID']
     $.ajax({
-        url: '/course',
+        url: '/department',
         type: 'DELETE',
         data: JSON.stringify({
             "DeptID": DeptID
