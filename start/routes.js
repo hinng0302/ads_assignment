@@ -75,7 +75,8 @@ Route.group(()=>{
 Route.group(()=>{
     Route.get('/', 'DepartmentController.index')
     Route.put('/', 'DepartmentController.add')
-    Route.delete('/', 'DepartmentController.add')
+    Route.post('/', 'DepartmentController.edit')
+    Route.delete('/', 'DepartmentController.delete')
 }).prefix('/department')
 
 Route.get('/stud/test', 'StudentController.index')
