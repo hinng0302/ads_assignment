@@ -18,7 +18,7 @@ class DepartmentController {
             ret = {
                 success: true
             }
-            await got('http://0.0.0.0'+ '/update/department/'+DeptID)
+            await got('http://40.74.84.116'+ '/update/department/'+DeptID)
         }else {
             ret = {
                 error: 'DeptID already exists'
@@ -41,7 +41,7 @@ class DepartmentController {
             ret = {
                 success: true
             }
-            await got('http://0.0.0.0'+ '/update/department/'+DeptID)
+            await got('http://40.74.84.116'+ '/update/department/'+DeptID)
         } else {
             ret = {
                 success: false

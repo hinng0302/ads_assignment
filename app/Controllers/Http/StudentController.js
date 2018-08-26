@@ -40,7 +40,7 @@ class StudentController {
             // var temp2[temp['_id']] = temp['DeptName']
             // DeptId = { ...DeptId, ...temp}
         // )
-        await got('http://0.0.0.0'+'/update/student/'+studentID)
+        await got('http://40.74.84.116'+'/update/student/'+studentID)
         response.json(ret)
     }
 
@@ -59,8 +59,8 @@ class StudentController {
                 ret = {
                     success: true
                 }
-                var result = await got('http://0.0.0.0'+'/update/student/'+studentID)
-                console.log('http://0.0.0.0'+'/update/student/'+studentID)
+                var result = await got('http://40.74.84.116'+'/update/student/'+studentID)
+                console.log('http://40.74.84.116'+'/update/student/'+studentID)
                 console.log(JSON.stringify(result.body))
             } else {
                 ret = {

@@ -1,4 +1,5 @@
 'use strict'
+const got = use('got')
 const Offer = use('App/Models/Offer')
 const Course = use('App/Models/Course')
 class CourseController {
@@ -20,6 +21,7 @@ class CourseController {
             ret = {
                 success: true
             }
+            await got('http://40.74.84.116'+ '/update/course/'+CourseID)
         } else {
             ret = {
                 error: 'CourseID already exists'
@@ -54,6 +56,7 @@ class CourseController {
     async delete({request,response}){
         var {CourseID } = request.all(['CourseID'])
         var course = await Course.where({ CourseID:CourseID }).delete()
+        await got('http://40.74.84.116'+ '/update/course/'+CourseID)
         response.json(course)
     }
 
