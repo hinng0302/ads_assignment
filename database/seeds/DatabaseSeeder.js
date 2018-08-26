@@ -33,7 +33,7 @@ class DatabaseSeeder {
       Location: 'Green Zone'
     })
     await Student.create({
-      studentID: 15101010,
+      studentID: "15101010",
       student_name: 'Chan Tai Man',
       DoB: '2009-08-10',
       Enrolled:[
