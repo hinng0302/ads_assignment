@@ -11,7 +11,7 @@ class CourseController {
 
     async add({request, response}){
         var CourseID = request.only(['CourseID'])
-        console.log(CourseID)
+        console.log('add Course: '+CourseID)
         var ret = {}
         var count = await Course.where({CourseID:CourseID}).fetch()
         count = count.toJSON()
