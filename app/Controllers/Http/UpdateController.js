@@ -53,7 +53,6 @@ class UpdateController {
         
         query = {
             studentID: params.studentID,
-            'Enrolled.Year': 2016
         }
         console.log(query)
         try{
