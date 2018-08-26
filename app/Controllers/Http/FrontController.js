@@ -31,10 +31,14 @@ class FrontController {
     }
     async studentdetails({session,params ,view}){
         var studentID = params.studentID
-        var result = await got('http://0.0.0.0'+'/student/'+studentID)
-        console.log('/student/'+studentID)
-        result = JSON.parse(result.body)
-        console.log(result)
+        var result
+        try{
+            result = await got('http://0.0.0.0'+'/student/'+studentID)
+            console.log('/student/'+studentID)
+            result = JSON.parse(result.body)
+        }catch(error){
+            console.log(error.body)
+        }
         var object = {
             is_login: session.get('is_logged_in'),
             Student: result.Student,
