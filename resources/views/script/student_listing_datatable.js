@@ -1,7 +1,4 @@
-// $(document).ready(function(){
 var table = $("#student_listing").DataTable({
-    // "processing": true,
-    // "serverSide": true,
     "searching": false,
     "ajax": "/student",
     "columns": [

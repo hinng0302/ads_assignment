@@ -21,7 +21,13 @@ var table = $("#student_listing").DataTable({
     ],
 })
 
-$("#student_listing").on('click', 'i.fa-edit', function(){
+$("#student_listing").on('click', 'tr', function(){
+    var row = table.row( this ).data()
+    var CourseID = row['CourseID']
+    window.location = '/front/course/details/'+CourseID
+})
+
+$("#student_listing").on('click', 'i.far.fa-edit', function(){
     var data = table.row( $(this).parents('tr') ).data()
     var studentID = data['CourseID']
     window.location = '/front/course/edit/'+studentID

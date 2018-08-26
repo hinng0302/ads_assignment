@@ -6,31 +6,31 @@ div(class="container-fluid")
         include part/side-menu.pug
         main(class="col-md-9 ml-sm-auto col-lg-10 px-4" role="main")
             ol(class="breadcrumb") 
-                li Student
-                li  / Student Details / 
-                li=Student.studentID
-                - var studentID =Student.studentID
+                li Course
+                li  / Course Details / 
+                li=Course.CourseID
+                - var CourseID =Course.CourseID
             div(class="container")
                 div(class="row")
                     div(class="col-10 offset-md-1")
                         H3 
-                            i(class="fas fa-user-alt") Student
+                            i(class="fas fa-user-alt") Course
                         br
                         table(class="table table-condensed")
                             thead
                                 tr
-                                    th Student info
+                                    th Course info
                                     th details
                             tbody
                                 tr
-                                    th student ID
-                                    td=Student.studentID
+                                    th Course ID
+                                    td=Course.CourseID
                                 tr
-                                    th Student Name
-                                    td=Student.student_name
+                                    th Course Title
+                                    td=Course.Title
                                 tr
-                                    th date of birth
-                                    td=Student.DoB
+                                    th Level
+                                    td=Course.Level
                         br
                         H3 
                             i(class="fas fa-check") Enrolled 
@@ -65,26 +65,53 @@ div(class="container-fluid")
                                         thead
                                             tr
                                                 th studentID
-                                                th courseID
-                                                th course name
+                                                th student name
                                                 th Year
                                                 th Enroll Date
                                                 th action
+                        H3 
+                            i(class="fas fa-check") Offered
+                        br
+                        div(class="container")
+                            div(class="row")
+                                div(class="col-12") Search
+                            div(class="row")
+                                div(class="col-12")
+                                    table(class="table table-hover" id="offer_listing" style="100%")
+                                        thead
+                                            tr
+                                                th DeptID
+                                                th Year
+                                                th ClassSize 
+                                                th AvaliablePlaces
                         link(href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet")
                         script(src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js")
                         script.
-                            var studentID =#{studentID};
+                            var CourseID ="#{Course.CourseID}";
+                            $("#offer_listing").DataTable({
+                                "paging": false,
+                                "searching": false,
+                                ajax: {
+                                    url:'/update/getCourse/'+CourseID,
+                                    dataSrc: 'offers'
+                                },
+                                columns: [
+                                    { data: 'DeptID'},
+                                    { data: 'Year'},
+                                    { data: 'ClassSize'},
+                                    { data: 'AvaliablePlaces' }
+                                ]
+                            })
                             $("#enrollment_listing").DataTable({
                                 "paging": false,
                                 "searching": false,
                                 "ajax": {
-                                    "url":'/student/'+studentID,
-                                    "dataSrc": "Enrolled"
+                                    "url":'/update/getCourse/'+CourseID,
+                                    "dataSrc": "enrolled"
                                 },
                                 "columns": [
                                    { data: 'studentID' },
-                                   { data: 'CourseID' },
-                                   { data: 'DeptID' },
+                                   { data: 'student_name'},
                                    { data: 'Year'},
                                    { data: 'created_at' },
                                    {

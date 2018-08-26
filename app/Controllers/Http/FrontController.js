@@ -31,8 +31,6 @@ class FrontController {
     }
     async studentdetails({session,params ,view}){
         var studentID = params.studentID
-        // console.log(Env.get('APP_URL', '0.0.0.0')+'/student/'+studentID)
-        // var result = await got(Env.get('DEFAULT_DMOAIN', 'http://jameshome2004.ddns.net')+'/student/'+studentID)
         var result = await got('http://localhost:3333'+'/student/'+studentID)
         console.log('/student/'+studentID)
         result = JSON.parse(result.body)
@@ -63,6 +61,19 @@ class FrontController {
             courseID: params.courseID
         }
         return view.render('course_edit', object)
+    }
+    async coursedetails({session, params, view}){
+        var CourseID = params.CourseID
+        var result = await got('http://localhost:3333'+'/update/getcourse/'+CourseID)
+        result = JSON.parse(result.body)
+        console.log(result)
+        var object = {
+            is_login: session.get('is_logged_in'),
+            Course: result.course,
+            offers: result.offers,
+            enrolled: result.enrolled
+        }
+        return view.render('course_details', object)
     }
     async departmentlist({session, view}){
         var object = {

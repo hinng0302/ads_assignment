@@ -45,6 +45,8 @@ Route.group(()=> {
     Route.get('/getstudent/:studentID', 'UpdateController.getStudents')
     Route.get('/course/:CourseID', 'UpdateController.update_course')
     Route.get('/getcourse/:CourseID', 'UpdateController.getCourse')
+    Route.get('/dept/:DeptID', 'UpdateController.update_dept')
+    Route.get('/getDept/:DeptID', 'UpdateController.update_dept')
 }).prefix('/update')
 
 Route.group(()=>{
@@ -59,6 +61,7 @@ Route.group(()=>{
     Route.get('/listing', 'FrontController.courselist')
     Route.get('/create', 'FrontController.coursecreate')
     Route.get('/edit/:courseID', 'FrontController.courseedit')
+    Route.get('/details/:CourseID', 'FrontController.coursedetails')
 }).prefix('/front/course')
 Route.group(()=>{
     Route.get('/create', 'FrontController.departmentcreate')

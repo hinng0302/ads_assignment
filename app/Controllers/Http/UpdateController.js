@@ -7,14 +7,24 @@ class UpdateController {
         const Department = use('App/Models/Department')
         const EmbedStudent = use('App/Models/EmbedStudent')
         var studentID = {studentID: params.studentID}
-        var stud = await Student.where(studentID).first()
-        stud = stud.toJSON()
-        var enrolled = await Enrolled.where(studentID).fetch()
-        var dept = await Department.fetch()
-        dept = dept.toJSON()
+        var stud, enrolled, dept
+        try {
+            stud = await Student.where(studentID).first()
+            stud = stud.toJSON()
+            console.log(stud)
+            if(stud.length == 0){
+                response.json({error: 'record Not Found'})
+            }
+            enrolled = await Enrolled.where(studentID).fetch()
+            enrolled = enrolled.toJSON()
+            dept = await Department.fetch()
+            dept = dept.toJSON()    
+        } catch (error) {
+            response.json({error: 'record Not Found'})
+        }
+        
         var ret = {}
         ret.Student = stud
-        enrolled = enrolled.toJSON()
         for(var enroll of enrolled){
             for(var temp of dept){
                 if(temp['_id'] == enroll['DeptID']){
@@ -36,19 +46,32 @@ class UpdateController {
         await emb.save()
         response.json(ret)
     }
-    
     async getStudents({params, response}){
         const EmbedStudent = use('App/Models/EmbedStudent')
         var query = {studentID: params.studentID}
+        var student = {}
+        
+        query = {
+            studentID: params.studentID,
+            'Enrolled.Year': 2016
+        }
         console.log(query)
-        var student = await EmbedStudent.where(query).first()
-        student = student.toJSON()
+        try{
+            student = await EmbedStudent.where(query).first()
+            student = student.toJSON()
+        }catch(e){
+            student = {
+                error: 'record Not Found'
+            }
+        }
+        
         response.json(student)
     }
 
     async update_course({params, response}){
         const Offer = use('App/Models/Offer')
         const Course = use('App/Models/Course')
+        const Student = use('App/Models/Student')
         const Enrolled = use('App/Models/Enrolled')
         const EmbedCourse = use('App/Models/EmbedCourse')
         var ret = {}
@@ -60,7 +83,8 @@ class UpdateController {
             var course_obj = await Course.where(query).first()
             var offer = await Offer.where(query).fetch()
             var enrolled = await Enrolled.where(query).fetch()
-
+            var students = await Student.fetch()
+            students = students.toJSON()
             course_obj = course_obj.toJSON()
             offer = offer.toJSON()
             enrolled = enrolled.toJSON()
@@ -69,6 +93,11 @@ class UpdateController {
                 // let AvaliablePlaces = each_offer.AvaliablePlaces
                 for(var j=0; j<enrolled.length ; j++){
                     var eachenrolled = enrolled[j]
+                    for(let student of students){
+                        if(student.studentID == eachenrolled.studentID){
+                            enrolled[i].student_name = student.student_name
+                        }
+                    }
                     if(eachenrolled.CourseID == each_offer.CourseID && each_offer.Year == eachenrolled.Year){
                         offer[i].AvaliablePlaces = offer[i].AvaliablePlaces-1
                     }
@@ -102,8 +131,65 @@ class UpdateController {
     async getCourse({params, response}){
         const EmbedCourse = use('App/Models/EmbedCourse')
         var query = {CourseID: params.CourseID}
-        var emb_course = await EmbedCourse.where(query).first()
+        var emb_course = {}
+        try {
+            emb_course = await EmbedCourse.where(query).first()
+            emb_course = emb_course.toJSON()
+        } catch (error) {
+            emb_course = {
+                error: 'Not Found'
+            }
+        }
+        
         response.json(emb_course)
+    }
+
+    async update_dept({params, response}){
+        const Offer = use('App/Models/Offer')
+        const Department = use('App/Models/Department')
+        const EmbedDepartment = use('App/Models/EmbedDepartment')
+        var query = { DeptID: params.DeptID}
+        var department = await Department.where(query).fetch()
+        department = department.toJSON()
+        var ret = {}
+        if(department.length > 0){
+            department = await Department.where(query).fetch()
+            department = department.toJSON()
+            var _id = []
+            for(var dept of department){
+                _id = dept._id
+            }
+            console.log(_id)
+            var offer = await Offer.where({"DeptID": _id}).fetch()
+            // console.log(Offer.where({"DeptID": { "$in": _id}}).toSQL())
+            offer = offer.toJSON()
+            ret = {
+                Department: department,
+                Offer: offer
+            }
+            ret = {...query, ...ret}
+            var embeddepar = new EmbedDepartment(ret)
+            await embeddepar.save()
+        } else {
+            await Department.where(query).delete()
+
+        }
+        response.json(ret)
+    }
+    async getDept({params, response}){
+        const EmbedDepartment = use('App/Models/EmbedDepartment')
+        var query = { DeptID: params.DeptID}
+        var emb_course = {}
+        try {
+            emb_course = await EmbedDepartment.where(query).first()
+            emb_course = emb_course.toJSON()
+        } catch (error) {
+            emb_course = {
+                error: 'Not Found'
+            }
+        }
+        
+        response.json(emb_course)                
     }
 }
 
