@@ -23,25 +23,25 @@ var table = $("#student_listing").DataTable({
 
 $("#student_listing").on('click', 'i.fa-edit', function(){
     var data = table.row( $(this).parents('tr') ).data()
-    var studentID = data['CourseID']
-    window.location = '/front/course/edit/'+studentID
+    var DeptID = data['DeptID']
+    window.location = '/front/DeptID/edit/'+DeptID
 })
 
 $("#student_listing").on('click', 'i.fa-trash-alt', function(){
     var data = table.row( $(this).parents('tr') ).data()
-    var studentID = data['CourseID']
+    var DeptID = data['DeptID']
     $.ajax({
         url: '/course',
         type: 'DELETE',
         data: JSON.stringify({
-            "CourseID": studentID
+            "DeptID": DeptID
         }),
         headers: {
             "Content-Type": "application/json",
             "accept": 'application/json'
         },
         success: function(data){
-            window.location = "/front/course/listing"
+            window.location = "/front/DeptID/listing"
         }
     })
 })

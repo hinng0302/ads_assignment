@@ -73,6 +73,7 @@ Route.group(()=>{
 Route.group(()=>{
     Route.get('/', 'DepartmentController.index')
     Route.put('/', 'DepartmentController.add')
+    Route.delete('/', 'DepartmentController.add')
 }).prefix('/department')
 
 Route.get('/stud/test', 'StudentController.index')
@@ -98,3 +99,8 @@ Route.group(() => {
     Route.delete('/', 'CourseController.delete')
     Route.get('/group_by_dept', 'CourseController.index2')
 }).prefix('/course')
+
+
+Route.get(()=>{
+    Route.get('/')
+}).prefix('/department')

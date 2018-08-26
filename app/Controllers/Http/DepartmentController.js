@@ -49,7 +49,13 @@ class DepartmentController {
         }
         response.json(ret)
     }
-
+    async delete({request, response}){
+        var {DeptID } = request.all(['DeptID'])
+        console.log('DELETE: '+DeptID.DeptID)
+        var department = await Department.where({ DeptID:DeptID.DeptID }).delete()
+        await got('http://40.74.84.116'+ '/update/dept/'+DeptID.DeptID)
+        response.json(department)
+    }
     async department_corse({request, response}){
         var department = await Department.with('Offers').fetch()
         console.log(Department.with('Offers').toSQL())
