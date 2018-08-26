@@ -5,7 +5,6 @@ const Course = use('App/Models/Course')
 class CourseController {
     async get({response}){
         var course = await Course.fetch()
-        
         response.json({data:course})
     }
 

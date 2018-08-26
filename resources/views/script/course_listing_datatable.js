@@ -15,16 +15,11 @@ var table = $("#student_listing").DataTable({
         {data:'updated_at'},
         {
             data: 'Action',
-            "defaultContent": "<i class=\"far fa-edit\" style=\"cursor: pointer;\"></i> / <i class=\"far fa-trash-alt button\" style=\"cursor: pointer;\"></i>",
+            "defaultContent": "<i class=\"far fa-edit\" style=\"cursor: pointer;\"></i> "
+            +"/ <i class=\"far fa-trash-alt button\" style=\"cursor: pointer;\"></i>",
             "targets": -1
         }
     ],
-})
-
-$("#student_listing").on('click', 'tr', function(){
-    var row = table.row( this ).data()
-    var CourseID = row['CourseID']
-    window.location = '/front/course/details/'+CourseID
 })
 
 $("#student_listing").on('click', 'i.far.fa-edit', function(){
@@ -50,4 +45,10 @@ $("#student_listing").on('click', 'i.fa-trash-alt', function(){
             window.location = "/front/course/listing"
         }
     })
+})
+
+$("#student_listing").on('click', 'tr', function(){
+    var row = table.row( this ).data()
+    var CourseID = row['CourseID']
+    window.location = '/front/course/details/'+CourseID
 })
