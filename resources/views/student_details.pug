@@ -78,7 +78,7 @@ div(class="container-fluid")
                                 "paging": false,
                                 "searching": false,
                                 "ajax": {
-                                    "url":'/student/'+studentID,
+                                    "url":'/update/student/'+studentID,
                                     "dataSrc": "Enrolled"
                                 },
                                 "columns": [
@@ -100,7 +100,7 @@ div(class="container-fluid")
                                     "searching": false,
                                     "paging": false,
                                     "ajax": {
-                                        "url":'/student/'+studentID,
+                                        "url":'/update/student/'+studentID,
                                         "type": 'GET',
                                         "data": JSON.parse(JSON.stringify({
                                             Year:$('#yearselect').val(),
