@@ -31,7 +31,7 @@ class FrontController {
     }
     async studentdetails({session,params ,view}){
         var studentID = params.studentID
-        var result = await got('http://localhost:3333'+'/student/'+studentID)
+        var result = await got('http://0.0.0.0'+'/student/'+studentID)
         console.log('/student/'+studentID)
         result = JSON.parse(result.body)
         console.log(result)
@@ -64,7 +64,7 @@ class FrontController {
     }
     async coursedetails({session, params, view}){
         var CourseID = params.CourseID
-        var result = await got('http://localhost:3333'+'/update/getcourse/'+CourseID)
+        var result = await got('http://0.0.0.0'+'/update/getcourse/'+CourseID)
         result = JSON.parse(result.body)
         console.log(result)
         var object = {
