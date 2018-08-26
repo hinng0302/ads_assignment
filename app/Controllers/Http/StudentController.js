@@ -60,6 +60,7 @@ class StudentController {
                     success: true
                 }
                 await got('http://0.0.0.0'+'/update/student/'+studentID)
+                console.log('http://0.0.0.0'+'/update/student/'+studentID)
             } else {
                 ret = {
                     error: 'studentID already exists'
