@@ -21,7 +21,7 @@ class CourseController {
             ret = {
                 success: true
             }
-            await got('http://40.74.84.116'+ '/update/course/'+CourseID)
+            await got('http://40.74.84.116'+ '/update/course/'+CourseID.CourseID)
         } else {
             ret = {
                 error: 'CourseID already exists'
