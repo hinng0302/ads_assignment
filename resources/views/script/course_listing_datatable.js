@@ -41,7 +41,7 @@ $("#student_listing").on('click', 'i.fa-trash-alt', function(){
     })
 })
 
-$("#student_listing").on('click', 'tr', function(){
+$("#student_listing tbody").on('click', 'tr', function(){
     var row = table.row( this ).data()
     var CourseID = row['CourseID']
     window.location = '/front/course/details/'+CourseID
