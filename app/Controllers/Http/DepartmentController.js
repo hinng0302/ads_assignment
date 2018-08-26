@@ -19,7 +19,7 @@ class DepartmentController {
             ret = {
                 success: true
             }
-            await got(Env.get('DEFAULT_DOMAIN')+ '/update/department/'+DeptID)
+            await got(Env.get('DEFAULT_DOMAIN')+ '/update/dept/'+DeptID)
         }else {
             ret = {
                 error: 'DeptID already exists'
@@ -42,8 +42,8 @@ class DepartmentController {
             ret = {
                 success: true
             }
-            await got(Env.get('DEFAULT_DOMAIN')+ '/update/department/'+DeptID)
-            console.log(Env.get('DEFAULT_DOMAIN')+ '/update/department/'+DeptID)
+            await got(Env.get('DEFAULT_DOMAIN')+ '/update/dept/'+DeptID)
+            console.log(Env.get('DEFAULT_DOMAIN')+ '/update/dept/'+DeptID)
         } else {
             ret = {
                 success: false
