@@ -37,8 +37,10 @@ class FrontController {
             console.log('/student/'+studentID)
             result = JSON.parse(result.body)
         }catch(error){
+            console.log(error)
             console.log(error.body)
         }
+        console.log('------------'+result+'------------')
         var object = {
             is_login: session.get('is_logged_in'),
             Student: result.Student,
