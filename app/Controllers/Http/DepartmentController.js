@@ -1,5 +1,6 @@
 'use strict'
 const got = use('got')
+const Env = use('Env')
 const Department = use('App/Models/Department')
 class DepartmentController {
     async index({response}){
@@ -55,7 +56,7 @@ class DepartmentController {
         console.log('DELETE: '+DeptID)
         var query = {DeptID: DeptID}
         var department = await Department.where(query).delete()
-        await got('http://40.74.84.116'+ '/update/dept/'+ DeptID)
+        await got(Env.get('DEFAULT_DOMAIN')+'/update/dept/'+ DeptID)
         response.json(department)
     }
     async department_corse({request, response}){
