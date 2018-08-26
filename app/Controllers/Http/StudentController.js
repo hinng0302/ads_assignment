@@ -1,4 +1,5 @@
 'use strict'
+const got = use('got')
 const Student = use('App/Models/Student')
 const Department = use('App/Models/Department')
 class StudentController {
@@ -39,6 +40,7 @@ class StudentController {
             // var temp2[temp['_id']] = temp['DeptName']
             // DeptId = { ...DeptId, ...temp}
         // )
+        await got('http://0.0.0.0'+'/update/student/'+studentID)
         response.json(ret)
     }
 
@@ -57,6 +59,7 @@ class StudentController {
                 ret = {
                     success: true
                 }
+                await got('http://0.0.0.0'+'/update/student/'+studentID)
             } else {
                 ret = {
                     error: 'studentID already exists'

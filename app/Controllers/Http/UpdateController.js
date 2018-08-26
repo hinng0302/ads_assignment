@@ -161,7 +161,6 @@ class UpdateController {
             }
             console.log(_id)
             var offer = await Offer.where({"DeptID": _id}).fetch()
-            // console.log(Offer.where({"DeptID": { "$in": _id}}).toSQL())
             offer = offer.toJSON()
             ret = {
                 Department: department,

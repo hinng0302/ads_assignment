@@ -1,4 +1,5 @@
 'use strict'
+const got = use('got')
 const Department = use('App/Models/Department')
 class DepartmentController {
     async index({response}){
@@ -17,6 +18,7 @@ class DepartmentController {
             ret = {
                 success: true
             }
+            await got('http://0.0.0.0'+ '/update/department/'+DeptID)
         }else {
             ret = {
                 error: 'DeptID already exists'
@@ -39,6 +41,7 @@ class DepartmentController {
             ret = {
                 success: true
             }
+            await got('http://0.0.0.0'+ '/update/department/'+DeptID)
         } else {
             ret = {
                 success: false
