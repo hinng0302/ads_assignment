@@ -100,7 +100,3 @@ Route.group(() => {
     Route.get('/group_by_dept', 'CourseController.index2')
 }).prefix('/course')
 
-
-Route.get(()=>{
-    Route.get('/')
-}).prefix('/department')
