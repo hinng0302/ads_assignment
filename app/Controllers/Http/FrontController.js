@@ -117,11 +117,14 @@ class FrontController {
         }
         return view.render('dept_details', object)
     }
-    async departmentNewCourse({session, params, view}){
+    async departmentaddOffer({session, params, view}){
         var DeptID = params.DeptID
+        var result = await got(Env.get('DEFAULT_DOMAIN')+'/update/getdept/'+DeptID)
+        result = JOSN.parse(result.body)
         var object = {
             is_login: session.get('is_logged_in'),
-            DeptID: DeptID
+            DeptID: DeptID,
+            Department: result.Department
         }
         return view.render('dept_new_course', object)
     }

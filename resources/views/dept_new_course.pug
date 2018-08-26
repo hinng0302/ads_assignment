@@ -1,0 +1,35 @@
+include part/header.pug
+body
+include part/nav.pug
+div(class="container-fluid")
+    div(class="row")
+        include part/side-menu.pug
+        main(class="col-md-9 ml-sm-auto col-lg-10 px-4" role="main")
+            ol(class="breadcrumb") 
+                li Department
+                li  / Department Details / 
+                li=Department.DeptID
+                li / New Offer
+                - var DeptID =Department.DeptID
+            div(class="container")
+                div(class="row")
+                    div(class="col-10 offset-md-1")
+                        H3 
+                            i(class="fas fa-user-alt") Department
+                        br
+                        table(class="table table-condensed")
+                            thead
+                                tr
+                                    th Department info
+                                    th details
+                            tbody
+                                tr
+                                    th Department ID
+                                    td=Department.DeptID
+                                tr
+                                    th Department Name
+                                    td=Department.DeptName
+                                tr
+                                    th Location
+                                    td=Department.Location
+                        br
