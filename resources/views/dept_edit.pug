@@ -1,0 +1,53 @@
+include part/header.pug
+body
+include part/nav.pug
+div(class="container-fluid")
+    div(class="row")
+        include part/side-menu.pug
+        main(class="col-md-9 ml-sm-auto col-lg-10 px-4" role="main")
+            ol(class="breadcrumb") 
+                li Department 
+                li  / Department Edit
+            div(class="container")
+                div(class="row")
+                    div(class="col-6 offset-md-3")
+                        div(class="text-center mb-4")
+                            h1(class="h3 mb-3 font-weight-normal") Department Edit
+                        include part/Department_form.pug
+                        button(class="btn btn-lg btn-primary btn-block" id="createButton" type="submit") Save
+            script.
+                var DeptID="#{DeptID}";
+                $.ajax({
+                    url: '/update/getDept/'+DeptID,
+                    headers: {
+                        "Content-Type": "application/json",
+                        "accept": 'application/json'
+                    },
+                    success: function(data){
+                        var Department_obj = data.Department
+                        $('#DeptID').val(Department_obj.DeptID).prop('disabled', true)
+                        $('#DeptName').val(Department_obj.DeptName)
+                        $('#Location').val(Department_obj.Location)
+                    }
+                })
+                $('#createButton').on('click', function(){
+                    var DeptID = $('#DeptID').val()
+                    var title = $('#Title').val()
+                    var level = $('#Level').val()
+                    $.ajax({
+                        url: '/Department',
+                        method: 'POST',
+                        headers: {
+                            "Content-Type": "application/json",
+                            "accept": 'application/json'
+                        },
+                        data: JSON.stringify({
+                            DeptID: DeptID,
+                            Title: title,
+                            Level: level
+                        }),
+                        success: function(data){
+                            window.location = "/front/Department/listing"
+                        }
+                    })
+                })

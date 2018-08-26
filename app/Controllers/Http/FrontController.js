@@ -93,6 +93,14 @@ class FrontController {
         }
         return view.render('dept_create', object)
     }
+    async departmentedit({session, params, view}){
+        var DeptID = params.DeptID
+        var object = {
+            is_login: session.get('is_logged_in'),
+            DeptID: DeptID
+        }
+        return view.render('dept_edit', object)
+    }
     async Login({session, request, response}){
         console.log(request.all())
         var {username, password} = request.all(['username', 'password'])
