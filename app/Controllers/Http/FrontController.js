@@ -33,7 +33,7 @@ class FrontController {
         var studentID = params.studentID
         var result
         try{
-            result = await got('http://40.74.84.116'+'/student/'+studentID)
+            result = await got('http://40.74.84.116'+'/update/student/'+studentID)
             console.log('/student/'+studentID)
             result = JSON.parse(result.body)
         }catch(error){
