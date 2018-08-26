@@ -24,7 +24,7 @@ var table = $("#student_listing").DataTable({
 $("#student_listing").on('click', 'i.fa-edit', function(){
     var data = table.row( $(this).parents('tr') ).data()
     var DeptID = data['DeptID']
-    window.location = '/front/DeptID/edit/'+DeptID
+    window.location = '/front/department/edit/'+DeptID
 })
 
 $("#student_listing").on('click', 'i.fa-trash-alt', function(){
@@ -41,7 +41,7 @@ $("#student_listing").on('click', 'i.fa-trash-alt', function(){
             "accept": 'application/json'
         },
         success: function(data){
-            window.location = "/front/DeptID/listing"
+            window.location = "/front/department/listing"
         }
     })
 })

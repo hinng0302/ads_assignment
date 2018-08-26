@@ -66,6 +66,7 @@ Route.group(()=>{
 Route.group(()=>{
     Route.get('/create', 'FrontController.departmentcreate')
     Route.get('/listing', 'FrontController.departmentlist')
+    Route.get('/details/:DeptID', 'FrontController.departmentedit')
 }).prefix('/front/department')
 
 
