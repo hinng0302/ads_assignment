@@ -152,19 +152,19 @@ class UpdateController {
         department = department.toJSON()
         var ret = {}
         if(department.length > 0){
-            department = await Department.where(query).with('Offer').first()
+            department = await Department.where(query).first()
             department = department.toJSON()
-            // var _id = []
+            var _id = []
             // for(var dept of department){
-            //     _id = dept._id
+                _id = department._id
             // }
-            // console.log(_id)
-            // var offer = await Offer.where({"DeptID": _id}).fetch()
-            // offer = offer.toJSON()
-            // ret = {
-                // Department: department,
-                // Offer: offer
-            // }
+            console.log(_id)
+            var offer = await Offer.where({"DeptID": _id}).fetch()
+            offer = offer.toJSON()
+            ret = {
+                Department: department,
+                Offer: offer
+            }
             ret = department
             ret = {...query, ...ret}
             var embeddepar = new EmbedDepartment(ret)
