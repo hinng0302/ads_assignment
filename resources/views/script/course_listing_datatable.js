@@ -17,18 +17,19 @@ var table = $("#student_listing").DataTable({
 
 $("#student_listing").on('click', 'i.far.fa-edit', function(){
     var data = table.row( $(this).parents('tr') ).data()
-    var studentID = data['CourseID']
-    window.location = '/front/course/edit/'+studentID
+    console.log(data)
+    var CourseID = data['CourseID']
+    window.location = '/front/course/edit/'+CourseID
 })
 
 $("#student_listing").on('click', 'i.fa-trash-alt', function(){
     var data = table.row( $(this).parents('tr') ).data()
-    var studentID = data['CourseID']
+    var CourseID = data['CourseID']
     $.ajax({
         url: '/course',
         type: 'DELETE',
         data: JSON.stringify({
-            "CourseID": studentID
+            "CourseID": CourseID
         }),
         headers: {
             "Content-Type": "application/json",
