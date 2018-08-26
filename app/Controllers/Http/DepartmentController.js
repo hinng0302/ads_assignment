@@ -42,6 +42,7 @@ class DepartmentController {
                 success: true
             }
             await got(Env.get('DEFAULT_DOMAIN')+ '/update/department/'+DeptID)
+            console.log(Env.get('DEFAULT_DOMAIN')+ '/update/department/'+DeptID)
         } else {
             ret = {
                 success: false
