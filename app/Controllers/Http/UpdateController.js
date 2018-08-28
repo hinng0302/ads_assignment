@@ -162,7 +162,7 @@ class UpdateController {
                 _id = department._id
             // }
             console.log(_id)
-            var offer = await Offer.where({"DeptID": _id}).fetch()
+            var offer = await Offer.where({"Dept_id": params.DeptID}).fetch()
             offer = offer.toJSON()
             ret = {
                 Department: department,
