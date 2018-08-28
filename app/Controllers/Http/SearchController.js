@@ -30,7 +30,8 @@ class SearchController {
         if(stud_id.length > 0){
             query={...query, ...{studentID:{"$in": stud_id}}}
         }
-        var enrolled = await Enrolled.where({"DeptID": "CS"}).fetch()
+        console.log(query)
+        var enrolled = await Enrolled.where(query).fetch()
         enrolled = enrolled.toJSON()
         console.log(enrolled)
         query = {...query, ...{"Enrolled": enrolled}}
