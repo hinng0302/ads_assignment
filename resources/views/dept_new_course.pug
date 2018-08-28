@@ -42,8 +42,8 @@ div(class="container-fluid")
                                 div(class="col-4") Course
                                 div(class="col-8")
                                     div(class="input-group")
-                                        select(id="Course" required)
-                                            option(value="All") All
+                                        select(id="CourseID" required)
+                                            option(value="--") Please Select
                                             -var courses=Courses.data
                                             each course in courses
                                                 option=course.CourseID
@@ -63,4 +63,28 @@ div(class="container-fluid")
                             div(class="row")
                                 div(class="col-12")
                                     button(class="btn btn-lg btn-primary btn-block" id="submit" type="submit") Save
+                            script.
+                                $('#submit').on('click', function(){
+                                    var CourseID = $('#CourseID').val()
+                                    if(CourseID =='--'){
+                                        alert('Please select course ID')
+                                    } else {
+                                        var Dept_id = "#{Department.DeptID}"
+                                        var Year = $('#Year').val()
+                                        var ClassSize = $('#ClassSize').val()
+                                        $.ajax({
+                                            url: '/offer',
+                                            method: 'PUT',
+                                            data: JSON.stringify({
+                                                CourseID: CourseID,
+                                                Year: Year,
+                                                ClassSize: ClassSize,
+                                            }),
+                                            success: function(data){
+                                                window.location='/'
+                                            }
+                                        })
+                                    }
                                     
+
+                                })
