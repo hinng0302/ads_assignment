@@ -19,10 +19,10 @@ class OfferController {
             console.log(object)
             var offer = new Offer(object)
             await offer.save()
-            await got(Env.get('DEFAULT_DOMAIN')+'/upate/course/'+CourseID)
-            console.log(Env.get('DEFAULT_DOMAIN')+'/upate/course/'+CourseID)
-            await got(Env.get('DEFAULT_DOMAIN')+'/upate/dept/'+Dept_id)
-            console.log(Env.get('DEFAULT_DOMAIN')+'/upate/dept/'+Dept_id)
+            await got(Env.get('DEFAULT_DOMAIN')+'/update/course/'+CourseID)
+            console.log(Env.get('DEFAULT_DOMAIN')+'/update/course/'+CourseID)
+            await got(Env.get('DEFAULT_DOMAIN')+'/update/dept/'+Dept_id)
+            console.log(Env.get('DEFAULT_DOMAIN')+'/update/dept/'+Dept_id)
             ret = {
                 success: true
             }
