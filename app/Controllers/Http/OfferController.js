@@ -5,16 +5,16 @@ const Offer = use('App/Models/Offer')
 class OfferController {
     async add({request, response}){
         const {Dept_id, CourseID, Year, ClassSize} = request.only(['Dept_id', 'CourseID', 'Year', 'ClassSize'])
-        
+        Logger.info(request.all())
         var ret = {}
         try{
             console.log(Dept_id+", "+CourseID+", "+Year+", "+ClassSize)
             var object = {
                 Dept_id: Dept_id,
                 CourseID: CourseID,
-                Year: Year,
-                ClassSize: ClassSize,
-                AvaliablePlaces: ClassSize
+                Year: parseInt(Year),
+                ClassSize: parseInt(ClassSize),
+                AvaliablePlaces: parseInt(ClassSize)
             }
             console.log(object)
             var offer = new Offer(object)
