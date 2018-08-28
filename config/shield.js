@@ -139,7 +139,7 @@ module.exports = {
       '/course',
       '/department',
       '/offer',
-      '/enroll'
+      '/enrolled'
     ],
     cookieOptions: {
       httpOnly: false,

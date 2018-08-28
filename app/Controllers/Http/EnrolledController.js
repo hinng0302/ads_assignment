@@ -1,11 +1,11 @@
-'use strict'
-const Env = use('Env')
-const got = use('got')
-const Enrolled = use('App/Models/Enrolled')
+"use strict"
+const Env = use("Env")
+const got = use("got")
+const Enrolled = use("App/Models/Enrolled")
 
 class EnrolledController {
     async add({request, response}){
-        var {studentID, CourseID, Year, DeptID} =request.all(['studentID', 'CourseID', 'Year', 'DeptID'])
+        var {studentID, CourseID, Year, DeptID} = request.all(["studentID", "CourseID", "Year", "DeptID"])
         var query = {
             studentID: studentID,
             CourseID: CourseID,
@@ -22,13 +22,13 @@ class EnrolledController {
             ret = {
                 success: true
             }
-            await got(Env.get('DEFAULT_URL')+'/update/student/'+studentID)
-            await got(Env.get('DEFAULT_URL')+'/update/course/'+CourseID)
-            console.log(Env.get('DEFAULT_URL')+'/update/student/'+studentID)
-            console.log(Env.get('DEFAULT_URL')+'/update/course/'+CourseID)
+            await got(Env.get("DEFAULT_URL")+"/update/student/"+studentID)
+            await got(Env.get("DEFAULT_URL")+"/update/course/"+CourseID)
+            console.log(Env.get("DEFAULT_URL")+"/update/student/"+studentID)
+            console.log(Env.get("DEFAULT_URL")+"/update/course/"+CourseID)
         } else {
             ret ={
-                error: 'already exists'
+                error: "already exists"
             }
         }
         response.json(ret)
@@ -38,7 +38,7 @@ class EnrolledController {
         response.json(enrolled)
     }
     async delete({request, response}){
-        var {studentID, CourseID, Year, DeptID} = request.all(['studentID', 'CourseID', 'Year', 'DeptID'])
+        var {studentID, CourseID, Year, DeptID} = request.all(["studentID", "CourseID", "Year", "DeptID"])
         var query = {
             studentID: studentID,
             CourseID: CourseID,
@@ -51,7 +51,7 @@ class EnrolledController {
         enrolled = enrolled.toJSON()
         if(enrolled.length == 0){
             ret = {
-                error: 'record not exists'
+                error: "record not exists"
             }
         } else {
             enrolled = await Enrolled.where(query).delete()
