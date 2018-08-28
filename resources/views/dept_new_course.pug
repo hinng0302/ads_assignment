@@ -75,12 +75,12 @@ div(class="container-fluid")
                                         $.ajax({
                                             url: '/offer',
                                             method: 'PUT',
-                                            data: JSON.stringify({
+                                            data: {
                                                 Dept_id: Dept_id,
                                                 CourseID: CourseID,
                                                 Year: Year,
                                                 ClassSize: ClassSize,
-                                            }),
+                                            },
                                             success: function(data){
                                                 window.location='/front/department/details/'+Dept_id
                                             }
