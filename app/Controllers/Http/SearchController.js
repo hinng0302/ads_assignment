@@ -18,13 +18,13 @@ class SearchController {
         const Enrolled = use('App/Models/Enrolled')
         const { courseID, yearselect, DeptID} = request.all(['courseID', 'yearselect', 'DeptID'])
         query = {}
-        if(courseID != ''){
+        if(courseID != null){
             query={...query, ...{"CourseID": courseID}}
         }
         if(yearselect != null){
             query={...query, ...{"Year": parseInt(yearselect)}}
         }
-        if(DeptID != ''){
+        if(DeptID != null){
             query={...query, ...{"DeptID": DeptID}}
         }
         if(stud_id.length > 0){
