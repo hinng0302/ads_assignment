@@ -11,9 +11,9 @@ class OfferController {
             var object = {
                 Dept_id: Dept_id,
                 CourseID: CourseID,
-                Year: parseInt(Year),
-                ClassSize: parseInt(ClassSize),
-                AvaliablePlaces: parseInt(AvaliablePlaces)
+                Year: Year,
+                ClassSize: ClassSize,
+                AvaliablePlaces: AvaliablePlaces
             }
             console.log(object)
             // var offer = new Offer(object)
