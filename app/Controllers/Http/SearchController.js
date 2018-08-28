@@ -3,12 +3,13 @@
 class SearchController {
     async searchEnrolled({request, response}){
         var stud_id = [], query = {}
+        const Student = use('App/Models/Student')
         const {studentName}=request.all(['studentName'])
         if(studentName != ''){
             query = {
                 student_name: studentName
             }
-            const Student = use('App/Models/Student')
+            
             var students = await Student.where(query).fetch()
             students = students.toJSON()
             for(let stud of students){
@@ -33,7 +34,10 @@ class SearchController {
         console.log(query)
         var enrolled = await Enrolled.where(query).fetch()
         enrolled = enrolled.toJSON()
-        console.log(enrolled)
+        for(let enroll of enrolled){
+            var student = await Student.where({studentID: enroll.studentID}).first()
+            enroll.student_name = student.student_name
+        }
         query = {...query, ...{"Enrolled": enrolled}}
         response.json(query)
     }
