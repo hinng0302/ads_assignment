@@ -4,11 +4,8 @@ const got = use('got')
 const Offer = use('App/Models/Offer')
 class OfferController {
     async add({request, response}){
-        const Dept_id = request.only(['Dept_id'])
-        const CourseID = request.only(['CourseID']) 
-        const Year =  request.only(['Year'])
-        const ClassSize = request.only(['ClassSize'])
-
+        const {Dept_id, CourseID, Year, ClassSize} = request.only(['Dept_id', 'CourseID', 'Year', 'ClassSize'])
+        console.log(Dept_id+", "+CourseID+", "+Year+", "+ClassSize)
         var ret = {}
         try{
             var object = {
@@ -19,12 +16,12 @@ class OfferController {
                 AvaliablePlaces: parseInt(AvaliablePlaces)
             }
             console.log(object)
-            var offer = new Offer(object)
-            await offer.save()
-            await got(Env.get('DEFAULT_DOMAIN')+'/upate/course/'+CourseID)
-            console.log(Env.get('DEFAULT_DOMAIN')+'/upate/course/'+CourseID)
-            await got(Env.get('DEFAULT_DOMAIN')+'/upate/dept/'+Dept_id)
-            console.log(Env.get('DEFAULT_DOMAIN')+'/upate/dept/'+Dept_id)
+            // var offer = new Offer(object)
+            // await offer.save()
+            // await got(Env.get('DEFAULT_DOMAIN')+'/upate/course/'+CourseID)
+            // console.log(Env.get('DEFAULT_DOMAIN')+'/upate/course/'+CourseID)
+            // await got(Env.get('DEFAULT_DOMAIN')+'/upate/dept/'+Dept_id)
+            // console.log(Env.get('DEFAULT_DOMAIN')+'/upate/dept/'+Dept_id)
             ret = {
                 success: true
             }
