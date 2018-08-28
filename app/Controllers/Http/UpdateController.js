@@ -99,7 +99,9 @@ class UpdateController {
                         if(student.studentID == eachenrolled.studentID){
                             var stud = await Student.where({studentID:student.studentID}).first()
                             stud=stud.toJSON()
-                            enrolled[i].student_name = stud.student_name
+                            console.log(stud)
+                            eachenrolled.student_name = stud.student_name
+                            console.log(eachenrolled)
                         }
                     }
                     if(eachenrolled.CourseID == each_offer.CourseID && each_offer.Year == eachenrolled.Year){
