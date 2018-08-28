@@ -85,13 +85,13 @@ class FrontController {
         const Student = use('App/Models/Student')
         var students = await Student.fetch()
         students =students.toJSON()
-        const Enrolled = use('App/Models/Enrolled')
-        var enrolled = await Enrolled.where({"_id":_id}).first()
-        enrolled = enrolled.toJSON()
+        const Offer = use('App/Models/Offer')
+        var offer = await Offer.where({"_id":_id}).first()
+        offer = offer.toJSON()
         var object = {
             is_login: session.get('is_logged_in'),
             Students: students,
-            enrolled: enrolled
+            offer: offer
         }
         return view.render('course_addStudent', object)
     }
