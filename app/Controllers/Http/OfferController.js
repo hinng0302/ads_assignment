@@ -10,15 +10,17 @@ class OfferController {
             var object = {
                 Dept_id: Dept_id,
                 CourseID: CourseID,
-                Year: Year,
-                ClassSize: ClassSize,
-                AvaliablePlaces: AvaliablePlaces
+                Year: parseInt(Year),
+                ClassSize: parseInt(ClassSize),
+                AvaliablePlaces: parseInt(AvaliablePlaces)
             }
 
             var offer = new Offer(object)
             await offer.save()
             await got(Env.get('DEFAULT_DOMAIN')+'/upate/course/'+CourseID)
+            console.log(Env.get('DEFAULT_DOMAIN')+'/upate/course/'+CourseID)
             await got(Env.get('DEFAULT_DOMAIN')+'/upate/dept/'+Dept_id)
+            console.log(Env.get('DEFAULT_DOMAIN')+'/upate/dept/'+Dept_id)
             ret = {
                 success: true
             }
