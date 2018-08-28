@@ -41,7 +41,8 @@ class SearchController {
         enrolled = enrolled.toJSON()
         for(let enroll of enrolled){
             var student = await Student.where({studentID: enroll.studentID}).first()
-            var course = await Course.where({CourseID:courseID}).first()
+            console.log({"CourseID":enroll.CourseID})
+            var course = await Course.where({CourseID:enroll.CourseID}).first()
             console.log(course)
             enroll.course_name = course.Title
             enroll.student_name = student.student_name
