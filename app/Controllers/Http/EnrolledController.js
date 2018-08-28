@@ -17,15 +17,16 @@ class EnrolledController {
         var enrolled = await Enrolled.where(query).fetch()
         enrolled = enrolled.toJSON()
         if(enrolled.length == 0){
-            ret = new Enrolled(query)
-            await ret.save()
+            enrolled = new Enrolled(query)
+            await enrolled.save()
             ret = {
-                success: true
+                success: enrolled
             }
-            await got(Env.get("DEFAULT_DOMAIN")+"/update/student/"+studentID)
-            await got(Env.get("DEFAULT_DOMAIN")+"/update/course/"+CourseID)
             console.log(Env.get("DEFAULT_DOMAIN")+"/update/student/"+studentID)
             console.log(Env.get("DEFAULT_DOMAIN")+"/update/course/"+CourseID)
+            await got(Env.get("DEFAULT_DOMAIN")+"/update/student/"+studentID)
+            await got(Env.get("DEFAULT_DOMAIN")+"/update/course/"+CourseID)
+            
         } else {
             ret ={
                 error: "already exists"
