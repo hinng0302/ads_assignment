@@ -137,7 +137,9 @@ module.exports = {
     filterUris: [
       '/student',
       '/course',
-      '/department'
+      '/department',
+      '/offer',
+      '/enroll'
     ],
     cookieOptions: {
       httpOnly: false,
