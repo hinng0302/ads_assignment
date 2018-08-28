@@ -17,12 +17,12 @@ class OfferController {
                 AvaliablePlaces: ClassSize
             }
             console.log(object)
-            // var offer = new Offer(object)
-            // await offer.save()
-            // await got(Env.get('DEFAULT_DOMAIN')+'/upate/course/'+CourseID)
-            // console.log(Env.get('DEFAULT_DOMAIN')+'/upate/course/'+CourseID)
-            // await got(Env.get('DEFAULT_DOMAIN')+'/upate/dept/'+Dept_id)
-            // console.log(Env.get('DEFAULT_DOMAIN')+'/upate/dept/'+Dept_id)
+            var offer = new Offer(object)
+            await offer.save()
+            await got(Env.get('DEFAULT_DOMAIN')+'/upate/course/'+CourseID)
+            console.log(Env.get('DEFAULT_DOMAIN')+'/upate/course/'+CourseID)
+            await got(Env.get('DEFAULT_DOMAIN')+'/upate/dept/'+Dept_id)
+            console.log(Env.get('DEFAULT_DOMAIN')+'/upate/dept/'+Dept_id)
             ret = {
                 success: true
             }
