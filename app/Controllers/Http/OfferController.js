@@ -4,7 +4,8 @@ const got = use('got')
 const Offer = use('App/Models/Offer')
 class OfferController {
     async add({request, response}){
-        const {Dept_id, CourseID, Year, ClassSize} = request.all(['Dept_id', 'CourseID', 'Year', 'ClassSize'])
+        const {Dept_id, CourseID, Year, ClassSize} = request.all('Dept_id', 'CourseID', 'Year', 'ClassSize')
+
         var ret = {}
         try{
             var object = {
@@ -14,7 +15,7 @@ class OfferController {
                 ClassSize: parseInt(ClassSize),
                 AvaliablePlaces: parseInt(AvaliablePlaces)
             }
-
+            console.log(object)
             var offer = new Offer(object)
             await offer.save()
             await got(Env.get('DEFAULT_DOMAIN')+'/upate/course/'+CourseID)
