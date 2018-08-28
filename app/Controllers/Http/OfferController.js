@@ -21,6 +21,10 @@ class OfferController {
         }
         response.json(ret)
     }
+    async get({response}){
+        var offer= await Offer.fetch()
+        response.json(offer)
+    }
 }
 
 module.exports = OfferController

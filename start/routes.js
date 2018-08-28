@@ -105,6 +105,6 @@ Route.group(() => {
 }).prefix('/course')
 
 Route.group(()=>{
-    // Route.get('/', )
+    Route.get('/', 'OfferController.get')
     Route.put('/', 'OfferController.add')
 }).prefix('/offer')
