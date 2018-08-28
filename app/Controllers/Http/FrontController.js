@@ -107,8 +107,8 @@ class FrontController {
         return view.render('dept_edit', object)
     }
     async departmentdetails({session, params, view}){
-        await got(Env.get('DEFAULT_DOMAIN')+'/update/dept/'+CourseID)
         var DeptID = params.DeptID
+        await got(Env.get('DEFAULT_DOMAIN')+'/update/dept/'+DeptID)
         var result = await got(Env.get('DEFAULT_DOMAIN')+'/update/getdept/'+DeptID)
         result = JSON.parse(result.body)
         var object = {
