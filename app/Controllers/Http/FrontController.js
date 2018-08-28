@@ -82,6 +82,7 @@ class FrontController {
     }
     async courseAddStudent({session, params, view}){
         var _id = params._id
+        const Student = use('App/Models/Student')
         var students = await Student.fetch()
         students =students.toJSON()
         const Enrolled = use('App/Models/Enrolled')
