@@ -1,0 +1,39 @@
+include part/header.pug
+body
+include part/nav.pug
+div(class="container-fluid")
+    div(class="row")
+        include part/side-menu.pug
+        main(class="col-md-9 ml-sm-auto col-lg-10 px-4" role="main")
+            ol(class="breadcrumb") 
+                li Course 
+                li  / Add Student
+            div(class="container")
+                div(class="row")
+                    div(class="col-10 offset-md-1")
+                        H2
+                            i(class="fas fas-plus-circle") Add Student
+                        br
+                        table(class="table table-condensed")
+                            thead
+                                tr
+                                    th Course Info
+                                    th details
+                            tbody
+                                tr
+                                    th Department
+                                    th=enrolled.DeptID
+                                tr
+                                    th Year
+                                    th=enrolled.Year
+                                tr
+                                    th CourseID
+                                    th=enrolled.CourseID
+            div(class="container")
+                div(class="row")
+                    div(class="col-10 offset-md-1")
+                    br
+                    select student name
+                        option --
+                        each i in students
+                            option(value="#{i.studentID}")=i.student_name

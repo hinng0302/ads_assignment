@@ -40,7 +40,6 @@ class FrontController {
             console.log(error)
             console.log(error.body)
         }
-        console.log('------------'+result+'------------')
         var object = {
             is_login: session.get('is_logged_in'),
             Student: result.Student,
@@ -80,6 +79,20 @@ class FrontController {
             enrolled: result.enrolled
         }
         return view.render('course_details', object)
+    }
+    async courseAddStudent({session, params, view}){
+        var _id = params._id
+        var students = await Student.fetch()
+        students =students.toJSON()
+        const Enrolled = use('App/Models/Enrolled')
+        var enrolled = await Enrolled.find(_id)
+        enrolled = enrolled.toJSON()
+        var object = {
+            is_login: session.get('is_logged_in'),
+            Students: students,
+            enrolled: enrolled
+        }
+        return view.render('course_addStudent', object)
     }
     async departmentlist({session, view}){
         var object = {
