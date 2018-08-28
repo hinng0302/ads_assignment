@@ -5,6 +5,7 @@ const Offer = use('App/Models/Offer')
 class OfferController {
     async add({request, response}){
         const {Dept_id, CourseID, Year, ClassSize} = request.all(['Dept_id', 'CourseID', 'Year', 'ClassSize'])
+        var ret = {}
         try{
             var offer = new Offer(request.all(['Dept_id', 'CourseID', 'Year', 'ClassSize']))
             await offer.save()
