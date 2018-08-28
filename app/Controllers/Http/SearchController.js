@@ -3,6 +3,7 @@
 class SearchController {
     async searchEnrolled({request, response}){
         var stud_id = [], query = {}
+        const Course = use('App/Models/Course')
         const Student = use('App/Models/Student')
         const {studentName}=request.all(['studentName'])
         if(studentName != ''){
@@ -19,6 +20,10 @@ class SearchController {
         const Enrolled = use('App/Models/Enrolled')
         const { courseID, yearselect, DeptID} = request.all(['courseID', 'yearselect', 'DeptID'])
         query = {}
+        const {studentID} = request.all(['studentID'])
+        if(studentID != null){
+            stud_id.push(studentID)
+        }
         if(courseID != null){
             query={...query, ...{"CourseID": courseID}}
         }
@@ -36,6 +41,9 @@ class SearchController {
         enrolled = enrolled.toJSON()
         for(let enroll of enrolled){
             var student = await Student.where({studentID: enroll.studentID}).first()
+            var course = await Course.where({CourseID:courseID}).first()
+            console.log(course)
+            enroll.course_name = course.title
             enroll.student_name = student.student_name
         }
         query = {...query, ...{"Enrolled": enrolled}}

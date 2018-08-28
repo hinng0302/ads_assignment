@@ -100,18 +100,19 @@ div(class="container-fluid")
                                     "searching": false,
                                     "paging": false,
                                     "ajax": {
-                                        "url":'/update/student/'+studentID,
+                                        "url":'/search/enrolled',
                                         "type": 'GET',
                                         "data": JSON.parse(JSON.stringify({
-                                            Year:$('#yearselect').val(),
-                                            courseID:$('#Department').val(),
+                                            studentID: studentID,
+                                            yearselect: $('#yearselect').val(),
+                                            DeptID: $('#Department').val(),
                                         })),
                                         "dataSrc": "Enrolled"
                                     },
                                     "columns": [
                                         { data: 'studentID' },
                                         { data: 'courseID' },
-                                        { data: 'DeptID' },
+                                        { data: 'course_name' },
                                         { data: 'Year'},
                                         { data: 'created_at' },
                                         {
