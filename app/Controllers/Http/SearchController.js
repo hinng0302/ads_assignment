@@ -33,6 +33,7 @@ class SearchController {
         var enrolled = await Enrolled.where(query).fetch()
         enrolled = enrolled.toJSON()
         console.log(enrolled)
+        query = {...query, ...{"Enrolled": enrolled}}
         response.json(query)
     }
 }
