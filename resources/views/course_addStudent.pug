@@ -41,4 +41,24 @@ div(class="container-fluid")
                                     each student in Students
                                         option(value=student.studentID)=student.student_name
                     div(class="col-6")
-                        button(type="submit" class="btn btn-submit" id="button_submit") Submit
+                        button(type="submit" class="btn btn-lg btn-primary btn-block" id="button_submit") Submit
+            script.
+                $('#button_submit').on('click', function(){
+                    var studentID = $('#studentID').val()
+                    var CourseID = "#{offer.CourseID}"
+                    var Year = "#{offer.Year}"
+                    var DeptID = "#{offer.Dept_id}"
+                    $.ajax({
+                        url: '/enrolled',
+                        method: 'PUT',
+                        data: {
+                            studentID:studentID,
+                            CourseID: CourseID,
+                            Year: Year,
+                            DeptID:DeptID
+                        },
+                        success: function(data){
+                            window.location = "/front/department/details/"+DeptID
+                        }
+                    })
+                })
