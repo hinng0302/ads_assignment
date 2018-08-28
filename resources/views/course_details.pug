@@ -137,6 +137,14 @@ div(class="container-fluid")
                                 ]
                             })
                             $('#Search_Course').on('click', function(){
+                                //- url = '/search/enrolled'
+                                //- if($('#studentName').val() != ''){
+                                //-     url = url+'&studentName'+$('studentName').val()
+                                //- }
+                                //- if($('#yearselect').val() != ''){
+                                //-     url = url+'&yearselect'+$('yearselect').val()
+                                //- }
+                                //- if($('#Department').val())
                                 $("#enrollment_listing").DataTable().destroy();
                                 var dt = $("#enrollment_listing").DataTable({
                                     "searching": false,
@@ -146,9 +154,9 @@ div(class="container-fluid")
                                         "type": 'GET',
                                         "data": {
                                             courseID: CourseID,
-                                            studentName: $('studentName').val(),
-                                            yearselect: $('yearselect').val(),
-                                            DeptID: $('Department').val()
+                                            studentName: $('#studentName').val(),
+                                            yearselect: $('#yearselect').val(),
+                                            DeptID: $('#Department').val()
                                         },
                                         "dataSrc": "Enrolled"
                                     },
