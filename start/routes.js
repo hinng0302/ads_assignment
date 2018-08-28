@@ -109,3 +109,7 @@ Route.group(()=>{
     Route.put('/', 'OfferController.add')
     Route.delete('/', 'OfferController.delete')
 }).prefix('/offer')
+
+Route.group(()=>{
+    Route.get('/', 'EnrolledController.get')
+}).prefix('/enrolled')
