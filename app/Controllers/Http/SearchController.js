@@ -17,11 +17,22 @@ class SearchController {
         }
         const Enrolled = use('App/Models/Enrolled')
         const { courseID, yearselect, DeptID} = request.all(['courseID', 'yearselect', 'DeptID'])
-        query = {
-            courseID: courseID,
-            Year: parseInt(yearselect),
-            DeptID: DeptID
+        query = {}
+        if(courseID != ''){
+            query={...query, ...{"courseID": courseID}}
         }
+        if(yearselect != ''){
+            query={...query, ...{"Year": parseInt(yearselect)}}
+        }
+        if(DeptID != ''){
+            query={...query, ...{"DeptID": DeptID}}
+        }
+        if(stud_id.length > 0){
+            query={...query, ...{studentID:{"$in": stud_id}}}
+        }
+        var enrolled = await Enrolled.where(query).fetch()
+        enrolled = enrolled.toJSON()
+        console.log(enrolled)
         response.json(query)
     }
 }
