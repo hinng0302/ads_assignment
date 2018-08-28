@@ -12,7 +12,7 @@ class EnrolledController {
             Year: parseInt(Year),
             DeptID: DeptID
         }
-        
+        console.log(query)
         var ret = {}
         var enrolled = await Enrolled.where(query).fetch()
         enrolled = enrolled.toJSON()
@@ -24,6 +24,8 @@ class EnrolledController {
             }
             await got(Env.get('DEFAULT_URL')+'/update/student/'+studentID)
             await got(Env.get('DEFAULT_URL')+'/update/course/'+CourseID)
+            console.log(Env.get('DEFAULT_URL')+'/update/student/'+studentID)
+            console.log(Env.get('DEFAULT_URL')+'/update/course/'+CourseID)
         } else {
             ret ={
                 error: 'already exists'
