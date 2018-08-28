@@ -40,15 +40,23 @@ div(class="container-fluid")
                                 div(class="col-12") Search
                             div(class="row")
                                 div(class="input-group col-3")
+                                    div(class="input-group-perpend")
+                                        label(class="input-group-text" for="studentName") Student Name
+                                        input(type="text" name="studentName" id="studentName" placeholder="Student Name")
+                                div(class="input-group col-3")
                                     div(class="input-group-prepend")
                                         label(class="input-group-text"  for="yearselect") Year
-                                    select(name="year" id="yearselect" class="custom-select" multiple)
+                                    select(name="year" id="yearselect" class="custom-select")
                                             option(value='--') All
                                             option(value='2018') 2018
                                             option(value='2017') 2017
                                             option(value='2016') 2016
                                             option(value='2015') 2015
                                             option(value='2014') 2014
+                                            option(value='2013') 2013
+                                            option(value='2012') 2012
+                                            option(value='2011') 2011
+                                            option(value='2010') 2010
                                 div(class="col-5")
                                     div(class="input-group-prepend")
                                         label(class="input-group-text"  for="Department") Department
