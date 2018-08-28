@@ -86,7 +86,7 @@ class FrontController {
         var students = await Student.fetch()
         students =students.toJSON()
         const Enrolled = use('App/Models/Enrolled')
-        var enrolled = await Enrolled.find(_id)
+        var enrolled = await Enrolled.where({"_id":_id}).first()
         enrolled = enrolled.toJSON()
         var object = {
             is_login: session.get('is_logged_in'),
