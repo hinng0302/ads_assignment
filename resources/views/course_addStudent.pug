@@ -35,5 +35,5 @@ div(class="container-fluid")
                     br
                     select student name
                         option --
-                        each i in students
-                            option(value="#{i.studentID}")=i.student_name
+                        each student in students
+                            option(value="#{student.studentID}")=student.student_name
