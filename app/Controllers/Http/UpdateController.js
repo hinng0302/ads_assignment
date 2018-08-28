@@ -90,6 +90,9 @@ class UpdateController {
             for(var i= 0; i< offer.length ; i ++){
                 var each_offer = offer[i]
                 // let AvaliablePlaces = each_offer.AvaliablePlaces
+                if(offer[i].Dept_id != null){
+                    offer[i].DeptID=offer[i].Dept_id
+                }
                 for(var j=0; j<enrolled.length ; j++){
                     var eachenrolled = enrolled[j]
                     for(let student of students){
@@ -98,9 +101,6 @@ class UpdateController {
                         }
                     }
                     if(eachenrolled.CourseID == each_offer.CourseID && each_offer.Year == eachenrolled.Year){
-                        if(offer[i].Dept_id != null){
-                            offer[i].DeptID=offer[i].Dept_id
-                        }
                         offer[i].AvaliablePlaces = offer[i].AvaliablePlaces-1
                     }
                 }
