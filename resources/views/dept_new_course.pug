@@ -39,8 +39,7 @@ div(class="container-fluid")
                             i(class="fas fa-plus-circle") Offer
                             div(class="container")
                                 div(class="row")
-                                    div(class="col-3")
-                                        span Course
+                                    div(class="col-3") Course
                                     div(class="col-9")
                                         div(class="input-group")
                                             select(id="Course" required)
@@ -49,15 +48,13 @@ div(class="container-fluid")
                                                 each course in courses
                                                     option=course.CourseID
                                 div(class="row")
-                                    div(class="col-4")
-                                        p Year
+                                    div(class="col-4") Year
                                     div(class="col-8")
                                         div(class="input-group")
                                             input(type="number" id="Year" placeholder="YYYY" min="2000" max="2100" class="form-control")
                                 br
                                 div(class="row")
-                                    div(class="col-4")
-                                        h7 Class Size
+                                    div(class="col-4") Class Size
                                     div(class="col-8")
                                         div(class="input-group")
                                             input(type="number" id="ClassSize" class="form-control" min="10" max="50")
