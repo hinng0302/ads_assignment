@@ -31,9 +31,11 @@ div(class="container-fluid")
                                     th=offer.CourseID
             div(class="container")
                 div(class="row")
-                    div(class="col-10 offset-md-1")
+                    div(class="col-9 offset-md-2")
                     br
-                    select student name
-                        option --
-                        each student in Students
-                            option(value=student.studentID)=student.student_name
+                    div(class="input-group")
+                        label(for="studentID") Select Student Name
+                        select(class="form-control" id="studentID") student name
+                            option --
+                            each student in Students
+                                option(value=student.studentID)=student.student_name
