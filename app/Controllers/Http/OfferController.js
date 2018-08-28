@@ -39,7 +39,7 @@ class OfferController {
     }
     async delete({request, response}){
         var {_id} = request.all(['_id'])
-        var offer = await Offer.find(_id).delete()
+        var offer = await Offer.where({_id:_id}).delete()
         response.json(offer)
     }
 }
