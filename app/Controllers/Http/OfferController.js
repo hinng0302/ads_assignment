@@ -4,7 +4,10 @@ const got = use('got')
 const Offer = use('App/Models/Offer')
 class OfferController {
     async add({request, response}){
-        const {Dept_id, CourseID, Year, ClassSize} = request.all('Dept_id', 'CourseID', 'Year', 'ClassSize')
+        const Dept_id = request.only(['Dept_id'])
+        const CourseID = request.only(['CourseID']) 
+        const Year =  request.only(['Year'])
+        const ClassSize = request.only(['ClassSize'])
 
         var ret = {}
         try{
