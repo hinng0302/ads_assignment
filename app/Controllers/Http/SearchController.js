@@ -43,7 +43,7 @@ class SearchController {
             var student = await Student.where({studentID: enroll.studentID}).first()
             var course = await Course.where({CourseID:courseID}).first()
             console.log(course)
-            enroll.course_name = course.title
+            enroll.course_name = course.Title
             enroll.student_name = student.student_name
         }
         query = {...query, ...{"Enrolled": enrolled}}
