@@ -21,7 +21,7 @@ class SearchController {
         if(courseID != ''){
             query={...query, ...{"CourseID": courseID}}
         }
-        if(yearselect != ''){
+        if(yearselect != null){
             query={...query, ...{"Year": parseInt(yearselect)}}
         }
         if(DeptID != ''){
@@ -30,7 +30,7 @@ class SearchController {
         if(stud_id.length > 0){
             query={...query, ...{studentID:{"$in": stud_id}}}
         }
-        var enrolled = await Enrolled.where(query).fetch()
+        var enrolled = await Enrolled.where({"DeptID": "CS"}).fetch()
         enrolled = enrolled.toJSON()
         console.log(enrolled)
         query = {...query, ...{"Enrolled": enrolled}}
