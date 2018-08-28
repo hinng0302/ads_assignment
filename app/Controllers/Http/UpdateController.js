@@ -98,7 +98,7 @@ class UpdateController {
                         }
                     }
                     if(eachenrolled.CourseID == each_offer.CourseID && each_offer.Year == eachenrolled.Year){
-                        if(offer[i].Dept_id){
+                        if(offer[i].Dept_id != null){
                             offer[i].DeptID=offer[i].Dept_id
                         }
                         offer[i].AvaliablePlaces = offer[i].AvaliablePlaces-1
