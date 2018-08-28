@@ -22,10 +22,10 @@ class EnrolledController {
             ret = {
                 success: true
             }
-            await got(Env.get("DEFAULT_URL")+"/update/student/"+studentID)
-            await got(Env.get("DEFAULT_URL")+"/update/course/"+CourseID)
-            console.log(Env.get("DEFAULT_URL")+"/update/student/"+studentID)
-            console.log(Env.get("DEFAULT_URL")+"/update/course/"+CourseID)
+            await got(Env.get("DEFAULT_DOMAIN")+"/update/student/"+studentID)
+            await got(Env.get("DEFAULT_DOMAIN")+"/update/course/"+CourseID)
+            console.log(Env.get("DEFAULT_DOMAIN")+"/update/student/"+studentID)
+            console.log(Env.get("DEFAULT_DOMAIN")+"/update/course/"+CourseID)
         } else {
             ret ={
                 error: "already exists"
