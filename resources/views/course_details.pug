@@ -39,11 +39,11 @@ div(class="container-fluid")
                             div(class="row")
                                 label(for="basic-url") Search
                             div(class="row")
-                                div(class="input-group col-3")
+                                div(class="input-group col-6")
                                     div(class="input-group-perpend")
                                         span(class="input-group-text" for="studentName") Student Name
                                     input(type="text" class="form-control" name="studentName" aria-describedby="basic-addon1" id="studentName" placeholder="Student Name")
-                                div(class="input-group col-3")
+                                div(class="input-group col-6")
                                     div(class="input-group-prepend")
                                         label(class="input-group-text"  for="yearselect") Year
                                     select(name="year" id="yearselect" class="custom-select")
@@ -57,14 +57,15 @@ div(class="container-fluid")
                                             option(value='2012') 2012
                                             option(value='2011') 2011
                                             option(value='2010') 2010
-                                div(class="col-5")
+                            div(class="row")
+                                div(class="col-6")
                                     div(class="input-group-prepend")
                                         label(class="input-group-text"  for="Department") Department
                                         select(name="deptID" id="Department" class="custom-select")
                                                 option(value='--') All
                                                 option(value='CS') CS
                                                 option(value='IS') IS
-                                div(class="col-4")
+                                div(class="col-5")
                                     botton(id="add_Course" class="btn btn-primary") Search
                 
                             div(class="row")
