@@ -19,7 +19,7 @@ class SearchController {
         const { courseID, yearselect, DeptID} = request.all(['courseID', 'yearselect', 'DeptID'])
         query = {}
         if(courseID != ''){
-            query={...query, ...{"courseID": courseID}}
+            query={...query, ...{"CourseID": courseID}}
         }
         if(yearselect != ''){
             query={...query, ...{"Year": parseInt(yearselect)}}
