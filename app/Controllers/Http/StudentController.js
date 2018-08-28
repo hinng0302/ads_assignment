@@ -1,4 +1,5 @@
 'use strict'
+const Env = use('Env')
 const got = use('got')
 const Student = use('App/Models/Student')
 const Department = use('App/Models/Department')
