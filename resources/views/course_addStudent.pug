@@ -35,8 +35,8 @@ div(class="container-fluid")
                     br
                     div(class="input-group")
                         div(class='input-group-prepend')
-                            label(for="studentID") Select Student Name
-                            select(class="form-control" id="studentID") student name
+                            label(class="input-group-text" for="studentID") Select Student Name
+                            select(class="custom-select" id="studentID") student name
                                 option --
                                 each student in Students
                                     option(value=student.studentID)=student.student_name
