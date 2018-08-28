@@ -82,12 +82,13 @@ class FrontController {
     }
     async courseAddStudent({session, params, view}){
         var _id = params._id
+        const Offer = use('App/Models/Offer')
         const Student = use('App/Models/Student')
         var students = await Student.fetch()
-        students =students.toJSON()
-        const Offer = use('App/Models/Offer')
+        
         var offer = await Offer.where({"_id":_id}).first()
         offer = offer.toJSON()
+        students = students.toJSON()
         var object = {
             is_login: session.get('is_logged_in'),
             Students: students,
