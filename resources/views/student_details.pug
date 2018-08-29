@@ -95,9 +95,9 @@ div(class="container-fluid")
                                 ]
                             })
                             $('#add_Course').on('click', function(){
-                                if($('#yearselect').val() != '--'){
+                                if($('#yearselect').val() == '--'){
                                     alert('Please select Year');
-                                }else if($('#Department').val() != '--'){
+                                }else if($('#Department').val() == '--'){
                                     alert('Please select Department');
                                 }else {
                                     $("#enrollment_listing").DataTable().destroy();

@@ -111,7 +111,7 @@ class FrontController {
     async departmentedit({session, params, view}){
         
         var DeptID = params.DeptID
-        var result = await got(Env.get('DEFAULT_DOMAIN')+'/update/getdept/'+CourseID)
+        var result = await got(Env.get('DEFAULT_DOMAIN')+'/update/getdept/'+DeptID)
         result = JSON.parse(result.body)
         var object = {
             is_login: session.get('is_logged_in'),
