@@ -3,7 +3,14 @@ var table = $("#student_listing").DataTable({
     "ajax": "/student",
     "columns": [
         {data:'studentID'},
-        {data:'student_name'},
+        {
+            data:'student_name',
+            sortable: false,
+            render: function(data, type, full, meta){
+                var student_name = full.student_name
+                return '<p style="cursor: pointer;"><i class="fas fa-user-graduate"></i>'+student_name+'</p>'
+            }
+        },
         {data:'DoB'},
         {data:'created_at'},
         {data:'updated_at'},

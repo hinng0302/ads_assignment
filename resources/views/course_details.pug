@@ -119,8 +119,6 @@ div(class="container-fluid")
                                         data: 'Action',
                                         sortable: false,
                                         "render": function(data, type, full, meta){
-                                            console.log(data)
-                                            console.log(type)
                                             var buttonID = full._id;
                                             return '<a href="/front/course/addstudent/'+buttonID+'"><i class="fas fas fa-plus-circle" style="cursor: pointer"></i></a>'
                                         }
