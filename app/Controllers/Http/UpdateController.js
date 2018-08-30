@@ -155,7 +155,7 @@ class UpdateController {
         const Department = use('App/Models/Department')
         const EmbedDepartment = use('App/Models/EmbedDepartment')
         var query = {}
-        var department = await Department.where().fetch()
+        var department = await Department.fetch()
         department = department.toJSON()
         var ret = {}
         if(department.length > 0){
