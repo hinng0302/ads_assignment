@@ -102,6 +102,14 @@ class FrontController {
         }
         return view.render('dept_listing', object)
     }
+
+    async departmentsearch({session, view}){
+        var object = {
+            is_login: session.get('is_logged_in')
+        }
+        return view.render('dept_offer_courses', object)
+    }
+
     async departmentcreate({session, view}){
         var object = {
             is_login: session.get('is_logged_in')

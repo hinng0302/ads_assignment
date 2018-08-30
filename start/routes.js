@@ -67,6 +67,7 @@ Route.group(()=>{
 Route.group(()=>{
     Route.get('/create', 'FrontController.departmentcreate')
     Route.get('/listing', 'FrontController.departmentlist')
+    Route.get('/search', 'FrontController.departmentsearch')
     Route.get('/edit/:DeptID', 'FrontController.departmentedit')
     Route.get('/details/:DeptID', 'FrontController.departmentdetails')
     Route.get('/addOffer/:DeptID', 'FrontController.departmentaddOffer')
@@ -107,6 +108,7 @@ Route.group(() => {
 
 Route.group(()=>{
     Route.get('/', 'OfferController.get')
+    Route.get('/search', 'OfferController.search')
     Route.put('/', 'OfferController.add')
     Route.delete('/', 'OfferController.delete')
 }).prefix('/offer')

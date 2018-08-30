@@ -1,0 +1,136 @@
+include part/header.pug
+body
+include part/nav.pug
+div(class="container-fluid")
+    div(class="row")
+        include part/side-menu.pug
+        main(class="col-md-9 ml-sm-auto col-lg-10 px-4" role="main")
+            ol(class="breadcrumb") 
+                li Department
+                li  / Search Course
+            div(class="container")
+                div(class="row")
+                    div(class="col-10 offset-md-1")
+                        H3 
+                            i(class="fas fa-check") Offer 
+                        br
+                        div(class="container")
+                            div(class="row")
+                                div(class="col-12") Search
+                            div(class="row")
+                                div(class="input-group col-3")
+                                    div(class="input-group-prepend")
+                                        label(class="input-group-text"  for="yearselect1") Year
+                                    select(name="year" id="yearselect1" class="custom-select" multiple)
+                                            option(value='--') --
+                                            option(value='2018') 2018
+                                            option(value='2017') 2017
+                                            option(value='2016') 2016
+                                            option(value='2015') 2015
+                                            option(value='2014') 2014
+                                div(class="col-5")
+                                    div(class="input-group-prepend")
+                                        label(class="input-group-text"  for="Department1") Department
+                                        select(name="deptID" id="Department1" class="custom-select")
+                                                option(value='--') --
+                                                option(value='CS') CS
+                                                option(value='IS') IS
+                                                option(value='BIT') BIT
+                                div(class="col-4")
+                                    
+                            br
+
+                            div(class="row")
+                                div(class="input-group col-3")
+                                    div(class="input-group-prepend")
+                                        label(class="input-group-text"  for="yearselect2") Year
+                                    select(name="year" id="yearselect2" class="custom-select" multiple)
+                                            option(value='--') --
+                                            option(value='2018') 2018
+                                            option(value='2017') 2017
+                                            option(value='2016') 2016
+                                            option(value='2015') 2015
+                                            option(value='2014') 2014
+                                div(class="col-5")
+                                    div(class="input-group-prepend")
+                                        label(class="input-group-text"  for="Department2") Department
+                                        select(name="deptID" id="Department2" class="custom-select")
+                                                option(value='--') --
+                                                option(value='CS') CS
+                                                option(value='IS') IS
+                                                option(value='BIT') BIT
+                                div(class="col-4")
+                                    botton(id="search_Course" class="btn btn-primary") Search                                    
+                
+                            div(class="row")
+                                div(class="col-12")
+                                    table(class="table table-hover" id="enrollment_listing" style="100%")
+                                        thead
+                                            tr
+                                                th CourseID
+                                                th Year
+                                                th ClassSize
+                                                th AvaliablePlaces
+                                                th created at
+                                                th updated at
+                                                th Action
+                        link(href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet")
+                        script(src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js")
+                        script.
+                            //var DeptID1 ="#{DeptID1}";
+
+                            $("#enrollment_listing").DataTable({
+                                "paging": false,
+                                "searching": false,
+                                "ajax": {
+                                    "url":'/offer/',
+                                    "type": 'GET',
+                                    "dataSrc": "Offer"
+                                },
+                                "columns": [
+                                   { data: 'CourseID' },
+                                   { data: 'Year' },
+                                   { data: 'ClassSize' },
+                                   { data: 'AvaliablePlaces'},
+                                   { data: 'created_at' },
+                                   { data: 'updated_at'},
+                                   {
+                                       data: 'Action',
+                                       "defaultContent": "<i class=\"far fa-edit\"  style=\"cursor: pointer;\"></i> / <i class=\"far fa-trash-alt button\" style=\"cursor: pointer;\"></i>",
+                                       "targets": -1
+                                   },
+                                ]
+                            })
+
+                            $('#search_Course').on('click', function(){
+                                $("#enrollment_listing").DataTable().destroy();
+                                var dt = $("#enrollment_listing").DataTable({
+                                    "searching": false,
+                                    "paging": false,
+                                    "ajax": {
+                                        "url":'/offer/search',
+                                        "type": 'GET',
+                                        "data": JSON.parse(JSON.stringify({
+                                            year1:$('#yearselect1').val(),
+                                            deptID1:$('#Department1').val(),
+                                            year2:$('#yearselect2').val(),
+                                            deptID2:$('#Department2').val(),                                            
+                                        })),
+                                        "dataSrc": "Offer"
+                                    },
+                                    "columns": [
+                                        { data: 'CourseID' },
+                                        { data: 'Year' },
+                                        { data: 'ClassSize' },
+                                        { data: 'AvaliablePlaces'},
+                                        { data: 'created_at' },
+                                        { data: 'updated_at'},
+                                        {
+                                            data: 'Action',
+                                            "defaultContent": "<i class=\"far fa-edit\"  style=\"cursor: pointer;\"></i> / <i class=\"far fa-trash-alt button\" style=\"cursor: pointer;\"></i>",
+                                            "targets": -1
+                                        },
+                                    ],
+                                })
+                                dt.ajax.reload();
+                            })
