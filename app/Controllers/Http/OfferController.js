@@ -39,7 +39,7 @@ class OfferController {
         response.json(offer)
     }
 
-    async search({response}){
+    async search({request, response}){
         var {year1, deptID1, year2, deptID2} = request.only(['year1', 'deptID1', 'year2', 'deptID2'])
         year1 = parseInt(year1)
         year2 = parseInt(year2)
@@ -49,11 +49,11 @@ class OfferController {
             .where({
                 $or: [
                     {
-                        DeptId: deptID1,
+                        Dept_id: deptID1,
                         Year: year1    
                     },
                     {
-                        DeptId: deptID2,
+                        Dept_id: deptID2,
                         Year: year2    
                     }                            
                 ]
@@ -62,7 +62,7 @@ class OfferController {
         }   else {
             var offer= await Offer
             .where({
-                    DeptId: deptID1,
+                Dept_id: deptID1,
                     Year: year1                                                   
             })
             .fetch()            
