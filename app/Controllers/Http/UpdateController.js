@@ -150,6 +150,39 @@ class UpdateController {
         response.json(emb_course)
     }
 
+    async getOffer({params, response}){
+        const Offer = use('App/Models/Offer')
+        const Department = use('App/Models/Department')
+        const EmbedDepartment = use('App/Models/EmbedDepartment')
+        var query = {}
+        var department = await Department.where().fetch()
+        department = department.toJSON()
+        var ret = {}
+        if(department.length > 0){
+            department = await Department.where().fetch()
+            department = department.toJSON()
+            //var _id = []
+            // for(var dept of department){
+                //_id = department._id
+            // }
+            console.log(_id)
+            var offer = await Offer.where().fetch()
+            offer = offer.toJSON()
+            ret = {
+                Department: department,
+                Offer: offer
+            }
+            ret = ret
+            ret = {...query, ...ret}
+            var embeddepar = new EmbedDepartment(ret)
+            await embeddepar.save()
+        } else {
+            await Department.where(query).delete()
+
+        }
+        response.json(ret)
+    }
+
     async update_dept({params, response}){
         const Offer = use('App/Models/Offer')
         const Department = use('App/Models/Department')

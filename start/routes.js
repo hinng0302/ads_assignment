@@ -47,6 +47,7 @@ Route.group(()=> {
     Route.get('/getcourse/:CourseID', 'UpdateController.getCourse')
     Route.get('/dept/:DeptID', 'UpdateController.update_dept')
     Route.get('/getDept/:DeptID', 'UpdateController.update_dept')
+    Route.get('/getoffer', 'UpdateController.getOffer')
 }).prefix('/update')
 
 Route.group(()=>{
