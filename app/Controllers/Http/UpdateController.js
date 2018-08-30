@@ -159,14 +159,14 @@ class UpdateController {
         department = department.toJSON()
         var ret = {}
         if(department.length > 0){
-            department = await Department.where().fetch()
+            department = await Department.fetch()
             department = department.toJSON()
             //var _id = []
             // for(var dept of department){
                 //_id = department._id
             // }
             console.log(_id)
-            var offer = await Offer.where().fetch()
+            var offer = await Offer.fetch()
             offer = offer.toJSON()
             ret = {
                 Department: department,
