@@ -165,7 +165,7 @@ class UpdateController {
             // for(var dept of department){
                 //_id = department._id
             // }
-            console.log(_id)
+           // console.log(_id)
             var offer = await Offer.fetch()
             offer = offer.toJSON()
             ret = {
