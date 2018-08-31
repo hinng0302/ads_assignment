@@ -58,14 +58,22 @@ class OfferController {
         var query = {Year: parseInt(params.Year), Dept_id: params.DeptID}
         var course= await Course.fetch()
         var offer= await Offer.where(query).fetch()
-        for(var o in offer){
-            for(var c in course){
-                if(offer[o].CourseID = course[c].CourseID){
-                        offer[o].CourseName = course[c].Title
-                    
+        // for(var o in offer){
+        //     for(var c in course){
+        //         if(offer[o].CourseID = course[c].CourseID){
+        //                 offer[o].CourseName = course[c].Title
+        //         }
+        //     }
+        // }
+        offer=offer.toJSON()
+        course=course.toJSON()
+        for(let o of offer){
+            for(let c of course){
+                if(o.CourseID == c.CourseID){
+                    o.CourseName = c.Title
                 }
             }
-        }        
+        }
         response.json({data:offer})
     }    
 
