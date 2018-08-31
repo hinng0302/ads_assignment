@@ -17,34 +17,12 @@ div(class="container-fluid")
                         div(class="container")
                             div(class="row")
                                 div(class="col-12") Search
-                            div(class="row")
-                                div(class="input-group col-3")
-                                    div(class="input-group-prepend")
-                                        label(class="input-group-text"  for="yearselect1") Year
-                                    select(name="year" id="yearselect1" class="custom-select" multiple)
-                                            option(value='--') --
-                                            option(value='2018') 2018
-                                            option(value='2017') 2017
-                                            option(value='2016') 2016
-                                            option(value='2015') 2015
-                                            option(value='2014') 2014
-                                div(class="col-5")
-                                    div(class="input-group-prepend")
-                                        label(class="input-group-text"  for="Department1") Department
-                                        select(name="deptID" id="Department1" class="custom-select")
-                                                option(value='--') --
-                                                option(value='CS') CS
-                                                option(value='IS') IS
-                                                option(value='BIT') BIT
-                                div(class="col-4")
-                                    
-                            br
 
                             div(class="row")
                                 div(class="input-group col-3")
                                     div(class="input-group-prepend")
-                                        label(class="input-group-text"  for="yearselect2") Year
-                                    select(name="year" id="yearselect2" class="custom-select" multiple)
+                                        label(class="input-group-text"  for="yearselect") Year
+                                    select(name="yearselect" id="yearselect" class="custom-select" multiple)
                                             option(value='--') --
                                             option(value='2018') 2018
                                             option(value='2017') 2017
@@ -53,8 +31,8 @@ div(class="container-fluid")
                                             option(value='2014') 2014
                                 div(class="col-5")
                                     div(class="input-group-prepend")
-                                        label(class="input-group-text"  for="Department2") Department
-                                        select(name="deptID" id="Department2" class="custom-select")
+                                        label(class="input-group-text"  for="deptID") Department
+                                        select(name="deptID" id="deptID" class="custom-select")
                                                 option(value='--') --
                                                 option(value='CS') CS
                                                 option(value='IS') IS
@@ -103,34 +81,36 @@ div(class="container-fluid")
                             })
 
                             $('#search_Course').on('click', function(){
-                                $("#enrollment_listing").DataTable().destroy();
-                                var dt = $("#enrollment_listing").DataTable({
-                                    "searching": false,
-                                    "paging": false,
-                                    "ajax": {
-                                        "url":'/offer/search',
-                                        "type": 'GET',
-                                        "data": JSON.parse(JSON.stringify({
-                                            year1:$('#yearselect1').val(),
-                                            deptID1:$('#Department1').val(),
-                                            year2:$('#yearselect2').val(),
-                                            deptID2:$('#Department2').val(),                                            
-                                        })),
-                                        "dataSrc": "Offer"
-                                    },
-                                    "columns": [
-                                        { data: 'CourseID' },
-                                        { data: 'Year' },
-                                        { data: 'ClassSize' },
-                                        { data: 'AvaliablePlaces'},
-                                        { data: 'created_at' },
-                                        { data: 'updated_at'},
-                                        {
-                                            data: 'Action',
-                                            "defaultContent": "<i class=\"far fa-edit\"  style=\"cursor: pointer;\"></i> / <i class=\"far fa-trash-alt button\" style=\"cursor: pointer;\"></i>",
-                                            "targets": -1
+                                if($('#yearselect').val() == '--'){
+                                    alert('Please select Year');
+                                }else if($('#deptID').val() == '--'){
+                                    alert('Please select Department');
+                                }else {                                
+                                    $("#enrollment_listing").DataTable().destroy();
+                                    var DeptID ="#{deptID}";
+                                    var Year ="#{yearselect}";
+                                    var dt = $("#enrollment_listing").DataTable({
+                                        "searching": false,
+                                        "paging": false,
+                                        "ajax": {
+                                            "url":'/offer/search/' + Year + '/' + DeptID,
+                                            "type": 'GET',
+                                            "dataSrc": "Offer"
                                         },
-                                    ],
-                                })
-                                dt.ajax.reload();
+                                        "columns": [
+                                            { data: 'CourseID' },
+                                            { data: 'Year' },
+                                            { data: 'ClassSize' },
+                                            { data: 'AvaliablePlaces'},
+                                            { data: 'created_at' },
+                                            { data: 'updated_at'},
+                                            {
+                                                data: 'Action',
+                                                "defaultContent": "<i class=\"far fa-edit\"  style=\"cursor: pointer;\"></i> / <i class=\"far fa-trash-alt button\" style=\"cursor: pointer;\"></i>",
+                                                "targets": -1
+                                            },
+                                        ],
+                                    })
+                                    dt.ajax.reload();
+                                }
                             })
