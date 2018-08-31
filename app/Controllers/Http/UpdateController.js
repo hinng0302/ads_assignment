@@ -6,6 +6,7 @@ class UpdateController {
         const Enrolled = use('App/Models/Enrolled')
         const Department = use('App/Models/Department')
         const EmbedStudent = use('App/Models/EmbedStudent')
+        const Course = use('App/Models/Course')
         var studentID = {studentID: params.studentID}
         var stud, enrolled, dept
         try {
@@ -31,6 +32,10 @@ class UpdateController {
                     enroll['DeptID'] = temp['DeptName']
                 }
             }
+           // get course name
+            var course = await Course.where({CourseID:enroll.CourseID}).first()
+            enroll.course_name = course.Title
+
         }
         ret.Enrolled = enrolled
         ret = {...studentID, ...ret}
