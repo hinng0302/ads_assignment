@@ -35,7 +35,7 @@ class OfferController {
     }
     async get({response}){
         var offer= await Offer.fetch()
-        offer = offer.toJSON()
+        //offer = offer.toJSON()
         response.json({data:offer})
         //response.json(offer)
     }
@@ -59,7 +59,7 @@ class OfferController {
     async search({params, response}){
         var query = {Year: params.Year, Dept_id: params.DeptID}
         var offer= await Offer.where(query).fetch()
-        offer = offer.toJSON()
+        //offer = offer.toJSON()
         response.json({data:offer})
     }    
 
