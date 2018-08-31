@@ -40,7 +40,7 @@ class OfferController {
         var course= await Course.fetch()
         for(var o in offer){
             for(var c in course){
-                if(Offer[o].courseId = course[c].courseId){
+                if(Offer[o].CourseID = course[c].CourseID){
                     Offer[o].CourseName = course[c].Title
                 }
             }
@@ -54,7 +54,7 @@ class OfferController {
         var offer= await Offer.where(query).fetch()
         for(var o in offer){
             for(var c in course){
-                if(offer[o].courseId = course[c].courseId){
+                if(offer[o].CourseID = course[c].CourseID){
                         Offer[o].CourseName = course[c].Title
                     
                 }
