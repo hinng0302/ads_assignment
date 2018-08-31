@@ -39,37 +39,53 @@ class OfferController {
         response.json(offer)
     }
 
-    async search({request, response}){
-        var {year1, deptID1, year2, deptID2} = request.only(['year1', 'deptID1', 'year2', 'deptID2'])
-        year1 = parseInt(year1)
-        year2 = parseInt(year2)
-
-        if (year2 != "" && deptID2 != "") {
+    /*
+    async search1({request, response}){
+        var {year, deptID} = request.only(['year', 'deptID'])
+        year = parseInt(year)
             var offer= await Offer
-            .where({
-                $or: [
+            .where(
                     {
                         Dept_id: deptID1,
                         Year: year1    
-                    },
-                    {
-                        Dept_id: deptID2,
-                        Year: year2    
-                    }                            
-                ]
-            })
+                    }                           
+            )
             .fetch()
-        }   else {
-            var offer= await Offer
-            .where({
-                Dept_id: deptID1,
-                    Year: year1                                                   
-            })
-            .fetch()            
-        }
-
-
         response.json(offer)
+    }   
+    */
+    
+    async search({params, response}){
+        const Offer = use('App/Models/Offer')
+        const Department = use('App/Models/Department')
+        const EmbedDepartment = use('App/Models/EmbedDepartment')
+        var query = {Year: params.Year, Dept_id: params.DeptID}
+        var department = await Department.fetch()
+        department = department.toJSON()
+        var ret = {}
+        if(department.length > 0){
+            department = await Department.fetch()
+            department = department.toJSON()
+            //var _id = []
+            // for(var dept of department){
+                //_id = department._id
+            // }
+           // console.log(_id)
+            var offer = await Offer.where(query).fetch()
+            offer = offer.toJSON()
+            ret = {
+                Department: department,
+                Offer: offer
+            }
+            ret = ret
+            ret = {...query, ...ret}
+            var embeddepar = new EmbedDepartment(ret)
+            await embeddepar.save()
+        } else {
+            await Department.where().delete()
+
+        }
+        response.json(ret)
     }    
 
     async delete({request, response}){

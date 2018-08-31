@@ -109,7 +109,7 @@ Route.group(() => {
 
 Route.group(()=>{
     Route.get('/', 'OfferController.get')
-    Route.get('/search', 'OfferController.search')
+    Route.get('/search/:Year/:DeptID', 'OfferController.search')
     Route.put('/', 'OfferController.add')
     Route.delete('/', 'OfferController.delete')
 }).prefix('/offer')
