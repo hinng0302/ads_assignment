@@ -47,6 +47,20 @@ class OfferController {
         // }        
         response.json({data:offer})
     }
+    async getCourseName({response}){
+        var offer= await Offer.fetch()
+        var course= await Course.fetch()
+        offer=offer.toJSON()
+        course=course.toJSON()
+        for(let o of offer){
+            for(let c of course){
+                if(o.CourseID == c.CourseID){
+                    o.CourseName = c.Title
+                }
+            }
+        }
+        response.json(o)
+    }
     
     async search({params, response}){
         var query = {Year: parseInt(params.Year), Dept_id: params.DeptID}
