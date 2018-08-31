@@ -39,7 +39,7 @@ div(class="container-fluid")
                                 select(class="custom-select" id="studentID") student name
                                     option --
                                     each student in Students
-                                        option(value=student.studentID)=#{student.studentID}+#{student.student_name}
+                                        option(value=student.studentID)=#{student.studentID student.student_name}
                     div(class="col-6")
                         button(type="submit" class="btn btn-lg btn-primary btn-block" id="button_submit") Submit
             script.
