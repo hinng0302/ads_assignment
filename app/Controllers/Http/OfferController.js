@@ -57,36 +57,10 @@ class OfferController {
     */
     
     async search({params, response}){
-        const Offer = use('App/Models/Offer')
-        const Department = use('App/Models/Department')
-        const EmbedDepartment = use('App/Models/EmbedDepartment')
         var query = {Year: params.Year, Dept_id: params.DeptID}
-        var department = await Department.fetch()
-        department = department.toJSON()
-        var ret = {}
-        if(department.length > 0){
-            department = await Department.fetch()
-            department = department.toJSON()
-            //var _id = []
-            // for(var dept of department){
-                //_id = department._id
-            // }
-           // console.log(_id)
-            var offer = await Offer.where(query).fetch()
-            offer = offer.toJSON()
-            ret = {
-                Department: department,
-                Offer: offer
-            }
-            ret = ret
-            ret = {...query, ...ret}
-            var embeddepar = new EmbedDepartment(ret)
-            await embeddepar.save()
-        } else {
-            await Department.where().delete()
-
-        }
-        response.json(ret)
+        var offer= await Offer.where(query).fetch()
+        offer = offer.toJSON()
+        response.json({data:offer})
     }    
 
     async delete({request, response}){
