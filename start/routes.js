@@ -68,8 +68,7 @@ Route.group(()=>{
 Route.group(()=>{
     Route.get('/create', 'FrontController.departmentcreate')
     Route.get('/listing', 'FrontController.departmentlist')
-    Route.get('/search', 'OfferController.departmentsearch')
-    Route.get('/search/:Year/:DeptID', 'OfferController.search')
+    Route.get('/search', 'FrontController.departmentsearch')
     Route.get('/edit/:DeptID', 'FrontController.departmentedit')
     Route.get('/details/:DeptID', 'FrontController.departmentdetails')
     Route.get('/addOffer/:DeptID', 'FrontController.departmentaddOffer')
