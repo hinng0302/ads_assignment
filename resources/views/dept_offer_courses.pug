@@ -86,8 +86,8 @@ div(class="container-fluid")
                                     alert('Please select Department');
                                 }else {                                
                                     $("#enrollment_listing").DataTable().destroy();
-                                    var DeptID ="#{deptID}";
-                                    var Year ="#{yearselect}";
+                                    var DeptID = $('#deptID').val();
+                                    var Year = $('#yearselect').val();
                                     var dt = $("#enrollment_listing").DataTable({
                                         "paging": false,
                                         "searching": false,
