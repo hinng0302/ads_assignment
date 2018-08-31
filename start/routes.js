@@ -100,6 +100,7 @@ Route.group(()=>{
 
 Route.group(() => {
     Route.get('/', 'CourseController.get')
+    //Route.get('/best', 'CourseController.best')
     Route.get('/:CourseID', 'CourseController.CourseDetails')
     Route.put('/', 'CourseController.add')
     Route.post('/', 'CourseController.edit')
