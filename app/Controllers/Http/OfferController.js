@@ -2,6 +2,8 @@
 const Env = use('Env')
 const got = use('got')
 const Offer = use('App/Models/Offer')
+const Course = use('App/Models/Course')
+
 class OfferController {
     async add({request, response}){
         const {Dept_id, CourseID, Year, ClassSize} = request.only(['Dept_id', 'CourseID', 'Year', 'ClassSize'])
@@ -35,31 +37,28 @@ class OfferController {
     }
     async get({response}){
         var offer= await Offer.fetch()
-        //offer = offer.toJSON()
+        var course= await Course.fetch()
+        for(var o of offer){
+            for(c of course){
+                if(o['CourseID'] == c['CourseID']){
+                    o['CourseName'] = c['Title']
+                }
+            }
+        }        
         response.json({data:offer})
-        //response.json(offer)
     }
-
-    /*
-    async search1({request, response}){
-        var {year, deptID} = request.only(['year', 'deptID'])
-        year = parseInt(year)
-            var offer= await Offer
-            .where(
-                    {
-                        Dept_id: deptID1,
-                        Year: year1    
-                    }                           
-            )
-            .fetch()
-        response.json(offer)
-    }   
-    */
     
     async search({params, response}){
         var query = {Year: params.Year, Dept_id: params.DeptID}
+        var course= await Course.fetch()
         var offer= await Offer.where(query).fetch()
-        //offer = offer.toJSON()
+        for(var o of offer){
+            for(c of course){
+                if(o['CourseID'] == c['CourseID']){
+                    o['CourseName'] = c['Title']
+                }
+            }
+        }        
         response.json({data:offer})
     }    
 

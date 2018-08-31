@@ -47,6 +47,7 @@ div(class="container-fluid")
                                             tr
                                                 th Department
                                                 th CourseID
+                                                th CourseName
                                                 th Year
                                                 th ClassSize
                                                 th AvaliablePlaces
@@ -68,6 +69,7 @@ div(class="container-fluid")
                                 "columns": [
                                    { data: 'Dept_id' },
                                    { data: 'CourseID' },
+                                   { data: 'CourseName' },
                                    { data: 'Year' },
                                    { data: 'ClassSize' },
                                    { data: 'AvaliablePlaces'},
@@ -98,8 +100,9 @@ div(class="container-fluid")
                                             "type": 'GET',
                                         },
                                         "columns": [
-                                        { data: 'Dept_id' },    
+                                        { data: 'Dept_id' },
                                         { data: 'CourseID' },
+                                        { data: 'CourseName' },
                                         { data: 'Year' },
                                         { data: 'ClassSize' },
                                         { data: 'AvaliablePlaces'},
