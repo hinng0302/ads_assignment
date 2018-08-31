@@ -39,7 +39,7 @@ class OfferController {
         var offer= await Offer.fetch()
         var course= await Course.fetch()
         for(var o of offer){
-            for(c of course){
+            for(var c of course){
                 if(o['CourseID'] == c['CourseID']){
                     o['CourseName'] = c['Title']
                 }
@@ -49,11 +49,11 @@ class OfferController {
     }
     
     async search({params, response}){
-        var query = {Year: params.Year, Dept_id: params.DeptID}
+        var query = {Year: parseInt(params.Year), Dept_id: params.DeptID}
         var course= await Course.fetch()
         var offer= await Offer.where(query).fetch()
         for(var o of offer){
-            for(c of course){
+            for(var c of course){
                 if(o['CourseID'] == c['CourseID']){
                     o['CourseName'] = c['Title']
                 }
