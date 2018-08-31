@@ -36,7 +36,8 @@ class OfferController {
     async get({response}){
         var offer= await Offer.fetch()
         offer = offer.toJSON()
-        response.json(offer)
+        response.json({data:offer})
+        //response.json(offer)
     }
 
     /*
