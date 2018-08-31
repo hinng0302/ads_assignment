@@ -59,7 +59,7 @@ class OfferController {
                 }
             }
         }
-        response.json(o)
+        response.json(offer)
     }
     
     async search({params, response}){
