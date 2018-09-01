@@ -65,6 +65,7 @@ class EnrolledController {
         var query = {
             studentID: studentID
         }
+        console.log(query)
         var enrolled_count =await Enrolled.where(query).fetch()
         enrolled_count=enrolled_count.toJSON()
         var ret = {
