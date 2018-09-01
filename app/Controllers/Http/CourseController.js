@@ -138,7 +138,14 @@ class CourseController {
         const Database = use('Database')
         const mongoClient = await Database.connect()
         var result = await mongoClient.collection('embed_courses').aggregate([
-            {$project:{ enrolled_count: {$size: { "$ifNull": [ "$enrolled", [] ] } } }},
+            {
+                $project:{ 
+                    CourseID: CourseID,
+                    enrolled_count: {
+                        $size: { "$ifNull": [ "$enrolled", [] ]} 
+                    } 
+                }
+                },
             {   
                 $sort: {"enrolled_count":1} 
             }
