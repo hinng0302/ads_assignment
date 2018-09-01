@@ -5,7 +5,7 @@ components:
       properties:
         course:
           type: object
-            - $ref: '#/components/schemas/course_object'
+            allOf: '#/components/schemas/course_object'
         offers:
           type: array
             $items: '#/components/schemas/offers_object'
