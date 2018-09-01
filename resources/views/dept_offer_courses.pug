@@ -66,9 +66,19 @@ div(class="container-fluid")
                                     "type": 'GET',
                                 },
                                 "columns": [
-                                   { data: 'Dept_id' },
+                                   { 
+                                        data: 'Dept_id',
+                                        render: function(data, type, full, meta){
+                                            return '<a href="/front/department/details/'+full.Dept_id+'">'+full.Dept_id+'</a>'
+                                        }
+                                    },
                                    { data: 'CourseID' },
-                                   { data: 'CourseName' },
+                                   { 
+                                       data: 'CourseName',
+                                       render: function(data, type, full, meta){
+                                           return '<a href="/front/course/details/'+full.CourseID+'">'+full.CourseName+'</a>'
+                                       }
+                                   },
                                    { data: 'Year' },
                                    { data: 'ClassSize' },
                                    { data: 'AvaliablePlaces'},
