@@ -107,6 +107,28 @@ class CourseController {
         // console.log(Course.where({Offer:{$elemMatch:{Year: year, $or:[{Dept_id: depart_code1}, {Dept_id: depart_code2}]}}}).toSQL())
         response.json(course)
     }
+
+    async popular({response}){
+        var enrolled = await enrolled.aggregate([
+            {
+                "$group":{
+                    _id: '$CourseID',
+                    count: { $sum: 1 }
+                }
+            }
+        ]).fetch()
+        enrolled = enrolled.toJSON()
+        var maxCount = 0
+        var courseID = ''
+        for(var enroll of enrolled){
+            if(enroll['count'] > maxCount) {
+                maxCount = enroll['count']
+                courseID = enroll['_id']
+            }
+        }
+        var course = await Course.where({CourseID: courseID}).fetch()
+        response.json({data: course})
+    }
 }
 
 module.exports = CourseController
