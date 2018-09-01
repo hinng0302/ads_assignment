@@ -7,7 +7,8 @@ components:
           allOf: '#/components/schemas/course_object'
         offers:
           type: array
-            $items: '#/components/schemas/offers_object'
+            items: 
+              $ref: '#/components/schemas/offers_object'
     course_data_object:
       type: object
       properties: 
