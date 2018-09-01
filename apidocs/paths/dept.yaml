@@ -15,7 +15,8 @@ paths:
           content:
             application/json:
               schema:
-                - $ref: '#/components/schemas/course_offer_object'
+                anyOf:
+                  - $ref: '#/components/schemas/course_offer_object'
   '/course/':
     get:
       tags:
