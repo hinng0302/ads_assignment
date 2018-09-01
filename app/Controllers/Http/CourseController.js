@@ -132,12 +132,12 @@ class CourseController {
     }
 
     async popular2({response}){
-        // const EmbedCourse = use('App/Models/EmbedCourse')
-        // var embercourse = await EmbedCourse.fetch()
+        const EmbedCourse = use('App/Models/EmbedCourse')
+        var embercourse = await EmbedCourse.fetch()
         // .count({'$size':'enrolled'})
-        const Database = use('Database')
-        const mongoClient = await Database.connect()
-        const result = await mongoClient.collection('embed_courses').find({Year: 2018}).toArray()
+        // const Database = use('Database')
+        // const mongoClient = await Database.connect()
+        // const result = await mongoClient.collection('embed_courses').find({Year: 2018}).toArray()
 
         response.json({data: result})
     }
