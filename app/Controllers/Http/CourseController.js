@@ -151,7 +151,7 @@ class CourseController {
                 }
                 },
             {   
-                $sort: {"enrolled_count":1} 
+                $sort: {"enrolled_count":-1} 
             }
 
         ]).toArray()
