@@ -15,27 +15,6 @@
 
 const Route = use('Route')
 Route.get('_test', 'DepartmentController.department_corse')
-const swaggerJSDoc = use('swagger-jsdoc')
-Route.get('/api-specs', async({request, response})=>{
-    const options = {
-		swaggerDefinition: {
-			openapi: '3.0.0',
-			info:{
-				version: '1.0.0',
-				title: 'ADS_assignment',
-			},
-        },
-        apis:[
-            'apidocs/paths/*',
-            'apidocs/components/*'
-        ]
-    }
-    var swaggerSpec = swaggerJSDoc(options)
-	delete swaggerSpec.swagger
-	swaggerSpec.components = swaggerSpec.paths.components
-	delete swaggerSpec.paths.components
-	return swaggerSpec
-})
 
 Route.get('/', 'FrontController.index')
 Route.post('/login', 'FrontController.Login')
