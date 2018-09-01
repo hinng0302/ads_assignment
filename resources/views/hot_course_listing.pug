@@ -15,12 +15,9 @@ div(class="container-fluid")
                         table(class="table table-hover" id="enrollment_listing" style="100%")
                             thead
                                 tr
-                                    th Department
                                     th CourseID
                                     th CourseName
-                                    th Year
-                                    th ClassSize
-                                    th AvaliablePlaces
+                                    th Level
                                     th Enrolled Count
             link(href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet")
             script(src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js")
@@ -33,12 +30,18 @@ div(class="container-fluid")
                         "type": 'GET',
                     },
                     "columns": [
-                        { data: 'Dept_id' },
                         { data: 'CourseID' },
-                        { data: 'CourseName' },
-                        { data: 'Year' },
-                        { data: 'ClassSize' },
-                        { data: 'AvaliablePlaces'},
+                        { 
+                            data: 'CourseName',
+                            render: function(data, type, full, meta){
+                                return full.course.Title
+                            }
+                        },
+                        { 
+                            data: 'Level',
+                            render: function(data, type, full, meta){
+                                return full.course.Level
+                        },
                         { data: 'enrolled_count' },
                     ]
                 })
