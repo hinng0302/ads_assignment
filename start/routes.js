@@ -121,7 +121,7 @@ Route.group(()=>{
     Route.get('/', 'EnrolledController.get')
     Route.put('/', 'EnrolledController.add')
     Route.delete('/', 'EnrolledController.delete')
-    Route.get('/student_id/:studentId', 'EnrolledCoutrnller.studentCount')
+    Route.get('/student_id/:studentId', 'EnrolledController.studentCount')
 }).prefix('/enrolled')
 
 Route.group(()=>{
