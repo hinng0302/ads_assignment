@@ -137,7 +137,7 @@ class CourseController {
         // .count({'$size':'enrolled'})
         const Database = use('Database')
         const mongoClient = await Database.connect()
-        const result = await mongoClient.collection('EmbedCourse')
+        const result = await mongoClient.collection('EmbedCourse').toJSON()
 
         response.json({data: result})
     }
