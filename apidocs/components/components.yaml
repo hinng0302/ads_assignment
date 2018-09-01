@@ -13,7 +13,8 @@ components:
       type: object
       properties: 
         type: array
-          $items: '#/components/schemas/course_object'
+          items: 
+            $ref: '#/components/schemas/course_object'
     student_data_object:
       type: object
       properties:
