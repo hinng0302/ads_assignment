@@ -20,32 +20,6 @@ var table = $("#student_listing").DataTable({
     ],
 })
 
-// $("#student_listing").on('click', 'i.far.fa-edit', function(){
-//     var data = table.row( $(this).parents('tr') ).data()
-//     console.log(data)
-//     var CourseID = data['CourseID']
-//     window.location = '/front/course/edit/'+CourseID
-// })
-
-// $("#student_listing").on('click', 'i.fa-trash-alt', function(){
-//     var data = table.row( $(this).parents('tr') ).data()
-//     var CourseID = data['CourseID']
-//     $.ajax({
-//         url: '/course',
-//         type: 'DELETE',
-//         data: JSON.stringify({
-//             "CourseID": CourseID
-//         }),
-//         headers: {
-//             "Content-Type": "application/json",
-//             "accept": 'application/json'
-//         },
-//         success: function(data){
-//             window.location = "/front/course/listing"
-//         }
-//     })
-// })
-
 $("#student_listing tbody").on('click', 'tr', function(){
     var row = table.row( this ).data()
     var CourseID = row['CourseID']
