@@ -3,7 +3,7 @@ $(document).ready(function(){
         var StudentId = $("#StudentId").val()
         var StudentName = $("#StudentName").val()
         var DOB = $("#DOB").val()
-        if(StudentID == ''){
+        if(StudentId == ''){
             alert('StudentID Cannot Empty')
         }else if(StudentName == ''){
             alert('Student Name Cannot Empty')
