@@ -135,7 +135,7 @@ class CourseController {
         const EmbedCourse = use('App/Models/EmbedCourse')
         // var result = await EmbedCourse.fetch()
         // .count({'$size':'enrolled'})
-        // const Database = use('Database')
+        const Database = use('Database')
         const mongoClient = await Database.connect()
         var result = await mongoClient.collection('embed_courses').aggregate({
             
