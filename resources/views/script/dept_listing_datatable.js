@@ -15,7 +15,7 @@ var table = $("#student_listing").DataTable({
         {data:'updated_at'},
         {
             data: 'Action',
-            "defaultContent": "<i class=\"far fa-edit\" style=\"cursor: pointer;\"></i> / <i class=\"far fa-trash-alt button\" style=\"cursor: pointer;\"></i>",
+            "defaultContent": "<i class=\"far fa-edit\" style=\"cursor: pointer;\"></i>",
             "targets": -1
         }
     ],
