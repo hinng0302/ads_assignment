@@ -1,0 +1,27 @@
+include part/header.pug
+body
+include part/nav.pug
+div(class="container-fluid")
+    div(class="row")
+        include part/side-menu.pug
+        main(class="col-md-9 ml-sm-auto col-lg-10 px-4" role="main")
+            ol(class="breadcrumb") 
+                li Hot Course  
+                li  / Course Listing
+                
+            div(class="container")
+                div(class="row")
+                    div(class="col-10 offset-md-1")
+                        table(class="hover" id="student_listing" style="100%")
+                            thead
+                                tr
+                                    th CourseID
+                                    th Title
+                                    th Level
+                                    th created_at
+                                    th updated_at
+                                    th Action
+            link(href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet")
+            script(src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js")
+            script
+                include script/course_listing_datatable.js

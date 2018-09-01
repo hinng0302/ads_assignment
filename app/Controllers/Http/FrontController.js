@@ -54,6 +54,15 @@ class FrontController {
         }
         return view.render('course_listing', object)
     }
+    
+ // hot course
+    async hotcourselist({session, view}){
+        var object = {
+            is_login: session.get('is_logged_in')
+        }
+        return view.render('hot_course_listing', object)
+    }
+
     async coursecreate({session, view}){
         var object = {
             is_login: session.get('is_logged_in')

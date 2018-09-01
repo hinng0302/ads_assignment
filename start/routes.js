@@ -64,6 +64,7 @@ Route.group(()=>{
     Route.get('/edit/:courseID', 'FrontController.courseedit')
     Route.get('/details/:CourseID', 'FrontController.coursedetails')
     Route.get('/addstudent/:_id', 'FrontController.courseAddStudent')
+    Route.get('/hotlisting', 'FrontController.hotcourselist')
 }).prefix('/front/course')
 Route.group(()=>{
     Route.get('/create', 'FrontController.departmentcreate')
