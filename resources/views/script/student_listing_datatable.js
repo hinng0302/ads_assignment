@@ -8,7 +8,7 @@ var table = $("#student_listing").DataTable({
             sortable: false,
             render: function(data, type, full, meta){
                 var student_name = full.student_name
-                return '<p style="cursor: pointer;"><i class="fas fa-user-graduate"></i>'+student_name+'</p>'
+                return '<a href="/front/student/details/'+full.studentID+'"><p style="cursor: pointer;"><i class="fas fa-user-graduate"></i>'+student_name+'</p></a>'
             }
         },
         {data:'DoB'},
@@ -21,11 +21,11 @@ var table = $("#student_listing").DataTable({
         },
     ],
 })
-$("#student_listing tbody").on('click', 'tr', function(){
-    var row = table.row( this ).data()
-    var studentID = row['studentID']
-    window.location = '/front/student/details/'+studentID
-})
+// $("#student_listing tbody").on('click', 'tr', function(){
+//     var row = table.row( this ).data()
+//     var studentID = row['studentID']
+//     window.location = '/front/student/details/'+studentID
+// })
 $("#student_listing").on('click', 'i.fa-edit', function(){
     var data = table.row( $(this).parents('tr') ).data()
     var studentID = data['studentID']
