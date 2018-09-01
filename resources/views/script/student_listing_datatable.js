@@ -35,20 +35,27 @@ $("#student_listing").on('click', 'i.fa-trash-alt', function(){
 
     var data = table.row( $(this).parents('tr') ).data()
     var studentID = data['studentID']
-    var studentName = data['student_name']
     $.ajax({
-        url: '/student',
-        type: 'DELETE',
-        data: JSON.stringify({
-            "studentID": studentID
-        }),
-        headers: {
-            "Content-Type": "application/json",
-            "accept": 'application/json'
-        },
+        url: '/enrolled/student_id/'+studentID,
         success: function(data){
-            window.location = "/front/student/listing"
+            var student_count = JSON.parse(data.student_count)
+            alert(student_count)
         }
     })
+    var studentName = data['student_name']
+    // $.ajax({
+    //     url: '/student',
+    //     type: 'DELETE',
+    //     data: JSON.stringify({
+    //         "studentID": studentID
+    //     }),
+    //     headers: {
+    //         "Content-Type": "application/json",
+    //         "accept": 'application/json'
+    //     },
+    //     success: function(data){
+    //         window.location = "/front/student/listing"
+    //     }
+    // })
 
 })
