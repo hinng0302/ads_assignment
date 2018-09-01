@@ -63,10 +63,7 @@ div(class="container-fluid")
                                 div(class="col-6")
                                     div(class="input-group-prepend")
                                         label(class="input-group-text"  for="Department") Department
-                                        select(name="deptID" id="Department" class="custom-select")
-                                                option(value='--') All
-                                                option(value='CS') CS
-                                                option(value='IS') IS
+                                        input(name="deptID" id="Department" value="#{DeptID}")
                                 div(class="col-5")
                                     botton(id="Search_Course" class="btn btn-primary") Search
                             br
