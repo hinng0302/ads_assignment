@@ -133,8 +133,8 @@ class CourseController {
 
     async popular2({response}){
         const EmbedCourse = use('App/Models/EmbedCourse')
-        var embercourse = await EmbedCourse
-        .count({'$size':'enrolled'})
+        var embercourse = await EmbedCourse.fetch()
+        // .count({'$size':'enrolled'})
 
         response.json(embercourse)
     }
