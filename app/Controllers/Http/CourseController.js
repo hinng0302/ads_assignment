@@ -133,7 +133,7 @@ class CourseController {
 
     async popular2({response}){
         const EmbedCourse = use('App/Models/EmbedCourse')
-        var embercourse = await EmbedCourse.aggregate
+        var embercourse = await EmbedCourse.where
         ({
             length: {"$size": '$enrolled'}
         }).sort('length').fetch()
