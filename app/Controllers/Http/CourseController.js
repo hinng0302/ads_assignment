@@ -133,11 +133,11 @@ class CourseController {
 
     async popular2({response}){
         const EmbedCourse = use('App/Models/EmbedCourse')
-        var result = await EmbedCourse.fetch()
+        // var result = await EmbedCourse.fetch()
         // .count({'$size':'enrolled'})
         // const Database = use('Database')
-        // const mongoClient = await Database.connect()
-        const result = await mongoClient.collection('embed_courses').aggregate({
+        const mongoClient = await Database.connect()
+        var result = await mongoClient.collection('embed_courses').aggregate({
             
                 $group: {
                     length: {$size: 'enrolled'}
