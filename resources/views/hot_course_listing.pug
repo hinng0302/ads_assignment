@@ -7,21 +7,44 @@ div(class="container-fluid")
         main(class="col-md-9 ml-sm-auto col-lg-10 px-4" role="main")
             ol(class="breadcrumb") 
                 li Hot Course  
-                li  / Course Listing
+                li  / HOt Course Listing
                 
             div(class="container")
                 div(class="row")
-                    div(class="col-10 offset-md-1")
-                        table(class="hover" id="student_listing" style="100%")
-                            thead
-                                tr
-                                    th CourseID
-                                    th Title
-                                    th Level
-                                    th created_at
-                                    th updated_at
-                                    th Action
-            link(href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet")
-            script(src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js")
-            script
-                include script/course_listing_datatable.js
+                                div(class="col-12")
+                                    table(class="table table-hover" id="enrollment_listing" style="100%")
+                                        thead
+                                            tr
+                                                th Department
+                                                th CourseID
+                                                th CourseName
+                                                th Year
+                                                th ClassSize
+                                                th AvaliablePlaces
+                                                th Enrolled Count
+                                                th Action
+                        link(href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet")
+                        script(src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js")
+                        script.
+                            $("#enrollment_listing").DataTable({
+                                "paging": false,
+                                "searching": false,
+                                "ajax": {
+                                    "url":'/course/popular',
+                                    "type": 'GET',
+                                },
+                                "columns": [
+                                   { data: 'Dept_id' },
+                                   { data: 'CourseID' },
+                                   { data: 'CourseName' },
+                                   { data: 'Year' },
+                                   { data: 'ClassSize' },
+                                   { data: 'AvaliablePlaces'},
+                                   { data: 'enrolled_count' },
+                                   {
+                                       data: 'Action',
+                                       "defaultContent": "<i class=\"far fa-edit\"  style=\"cursor: pointer;\"></i> / <i class=\"far fa-trash-alt button\" style=\"cursor: pointer;\"></i>",
+                                       "targets": -1
+                                   },
+                                ]
+                            })
