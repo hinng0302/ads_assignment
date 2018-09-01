@@ -140,7 +140,7 @@ class CourseController {
         var result = await mongoClient.collection('embed_courses').aggregate([
             {
                 $project:{ 
-                    CourseID: CourseID,
+                    CourseID: "$CourseID",
                     enrolled_count: {
                         $size: { "$ifNull": [ "$enrolled", [] ]} 
                     } 
