@@ -39,23 +39,25 @@ $("#student_listing").on('click', 'i.fa-trash-alt', function(){
         url: '/enrolled/student_id/'+studentID,
         success: function(data){
             var student_count = JSON.parse(data.student_count)
-            alert(student_count)
+            if(student_count == 0){
+                $.ajax({
+                        url: '/student',
+                        type: 'DELETE',
+                        data: JSON.stringify({
+                            "studentID": studentID
+                        }),
+                        headers: {
+                            "Content-Type": "application/json",
+                            "accept": 'application/json'
+                        },
+                        success: function(data){
+                            window.location = "/front/student/listing"
+                        }
+                    })
+            } else {
+                alert('Can not Delete Student, Crouse enrolled')
+            }
         }
     })
-    var studentName = data['student_name']
-    // $.ajax({
-    //     url: '/student',
-    //     type: 'DELETE',
-    //     data: JSON.stringify({
-    //         "studentID": studentID
-    //     }),
-    //     headers: {
-    //         "Content-Type": "application/json",
-    //         "accept": 'application/json'
-    //     },
-    //     success: function(data){
-    //         window.location = "/front/student/listing"
-    //     }
-    // })
 
 })
