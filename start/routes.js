@@ -85,7 +85,6 @@ Route.group(()=>{
 }).prefix('/department')
 
 Route.get('/stud/test', 'StudentController.index')
-
 Route.get('/stud/groupbycouse', 'StudentController.groupbycouse')
 Route.get('/course/offer_by_depart/:depart_code/year/:year', 'CourseController.offerby_dept')
 Route.get('/course/offer_by_multi_depart/:depart_code1/:depart_code2/year/:year', 'CourseController.offerby_dept_or')
@@ -122,6 +121,7 @@ Route.group(()=>{
     Route.get('/', 'EnrolledController.get')
     Route.put('/', 'EnrolledController.add')
     Route.delete('/', 'EnrolledController.delete')
+    Route.get('/student_id/:studentId', 'EnrolledCoutrnller.studentCount')
 }).prefix('/enrolled')
 
 Route.group(()=>{

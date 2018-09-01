@@ -16,7 +16,7 @@ var table = $("#student_listing").DataTable({
         {data:'updated_at'},
         {
             data: 'Action',
-            "defaultContent": "<i class=\"far fa-edit\"  style=\"cursor: pointer;\"></i>",
+            "defaultContent": "<i class=\"far fa-edit\"  style=\"cursor: pointer;\"></i> / <i class=\"far fa-trash-alt\"  style=\"cursor: pointer;\"></i>",
             "targets": -1
         },
     ],
@@ -32,8 +32,10 @@ $("#student_listing").on('click', 'i.fa-edit', function(){
     window.location = '/front/student/edit/'+studentID
 })
 $("#student_listing").on('click', 'i.fa-trash-alt', function(){
+
     var data = table.row( $(this).parents('tr') ).data()
     var studentID = data['studentID']
+    var studentName = data['student_name']
     $.ajax({
         url: '/student',
         type: 'DELETE',

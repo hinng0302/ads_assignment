@@ -60,6 +60,18 @@ class EnrolledController {
         }
         response.json(ret)
     }
+    async studentCount({params, response}){
+        var studentID = params.studentId
+        var query = {
+            studentID: studentID
+        }
+        var enrolled_count =await Enrolled.where(query).fetch()
+        enrolled_count=enrolled_count.toJSON()
+        var ret = {
+            student_count: enrolled_count.length
+        }
+        response.json(ret)
+    }
 }
 
 module.exports = EnrolledController
