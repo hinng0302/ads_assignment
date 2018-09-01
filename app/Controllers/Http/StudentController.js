@@ -90,11 +90,13 @@ class StudentController {
         } else {
             ret['response'] = false
         }
+        await got(Env.get('DEFAULT_DOMAIN')+'/update/student/'+studentID)
         response.json(stud)
     }
     async delete({request, response}){
         var {studentID } = request.all(['studentID'])
         var stud = await Student.where({ studentID:studentID }).delete()
+        await got(Env.get('DEFAULT_DOMAIN')+'/update/student/'+studentID)
         response.json(stud)
     }
 
