@@ -220,9 +220,20 @@ class UpdateController {
         }
         response.json(ret)
     }
-    async getDept({params, response}){
+    async getDept({params, resqust, response}){
         const EmbedDepartment = use('App/Models/EmbedDepartment')
         var query = { DeptID: params.DeptID}
+        if(typeof resqust.Year != undefined){
+            if(request.Year instanceof Array){
+                let arrayofYear = []
+                for(let y of request.Year){
+                    arrayofYear.push(parseInt(y))
+                }
+                query= {...query, ...{
+                    $in: {Year:arrayofYear}
+                }}
+            }
+        }
         var emb_course = {}
         try {
             emb_course = await EmbedDepartment.where(query).first()
