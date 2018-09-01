@@ -26,11 +26,11 @@ div(class="container-fluid")
                 $("#enrollment_listing").DataTable({
                     "paging": false,
                     "searching": false,
-                    "orderable": false,
                     "ajax": {
                         "url":'/course/popular',
                         "type": 'GET',
                     },
+                    "columnDefs": [{ targets: 'no-sort', orderable: false }],
                     "columns": [
                         { 
                             data: 'enrolled_count',
