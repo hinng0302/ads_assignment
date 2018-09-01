@@ -101,12 +101,12 @@ Route.group(()=>{
 Route.group(() => {
     Route.get('/', 'CourseController.get')
     Route.get('/best', 'CourseController.best')
+    Route.get('/popular', 'CourseController.popular2')
+    Route.get('/group_by_dept', 'CourseController.index2')
     Route.get('/:CourseID', 'CourseController.CourseDetails')
     Route.put('/', 'CourseController.add')
     Route.post('/', 'CourseController.edit')
     Route.delete('/', 'CourseController.delete')
-    Route.get('/group_by_dept', 'CourseController.index2')
-    Route.get('/popular', 'CourseController.popular2')
 }).prefix('/course')
 
 Route.group(()=>{
