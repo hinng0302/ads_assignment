@@ -132,25 +132,29 @@ class CourseController {
     }
 
     async popular2({response}){
-        const EmbedCourse = use('App/Models/EmbedCourse')
-        var result = await EmbedCourse.fetch()
+        // const EmbedCourse = use('App/Models/EmbedCourse')
+        // var result = await EmbedCourse.fetch()
         // .count({'$size':'enrolled'})
-        // const Database = use('Database')
-        // const mongoClient = await Database.connect()
-        // var result = await mongoClient.collection('embed_courses').aggregate([
-        //     {
-        //         $project:{ 
-        //             CourseID: "$CourseID",
-        //             enrolled_count: {
-        //                 $size: { "$ifNull": [ "$enrolled", [] ]} 
-        //             } 
-        //         }
-        //         },
-        //     {   
-        //         $sort: {"enrolled_count":1} 
-        //     }
+        const Database = use('Database')
+        const mongoClient = await Database.connect()
+        var result = await mongoClient.collection('embed_courses').aggregate([
+            {
+                $project:{ 
+                    CourseID: "$CourseID",
+                        course: "$course",
+                        offers: "$offers",
+                        created_at: "$created_at",
+                        updated_at: "$updated_at",
+                    enrolled_count: {
+                        $size: { "$ifNull": [ "$enrolled", [] ]} 
+                    } 
+                }
+                },
+            {   
+                $sort: {"enrolled_count":1} 
+            }
 
-        // ]).toArray()
+        ]).toArray()
 
         response.json({data: result})
     }
