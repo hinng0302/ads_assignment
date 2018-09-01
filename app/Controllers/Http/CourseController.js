@@ -135,6 +135,7 @@ class CourseController {
         // const EmbedCourse = use('App/Models/EmbedCourse')
         // var embercourse = await EmbedCourse.fetch()
         // .count({'$size':'enrolled'})
+        const Database = use('Database')
         const mongoClient = await Database.connect()
         const result = await mongoClient.collection('EmbedCourse').find( {enrolled: []} ).fetch()
 
