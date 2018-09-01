@@ -140,8 +140,8 @@ class CourseController {
         var result = await mongoClient.collection('embed_courses').aggregate({
             
                 $group: {
-                    course: course,
-                    CourseID: CourseID,
+                    // course: course,
+                    // CourseID: CourseID,
                     length: {$size: 'enrolled'}
                 },
                 $sort: {length: 1}
