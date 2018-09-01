@@ -106,7 +106,7 @@ Route.group(() => {
     Route.post('/', 'CourseController.edit')
     Route.delete('/', 'CourseController.delete')
     Route.get('/group_by_dept', 'CourseController.index2')
-    Route.get('/popular', 'CourseController.popular')
+    Route.get('/popular', 'CourseController.popular2')
 }).prefix('/course')
 
 Route.group(()=>{

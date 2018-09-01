@@ -126,8 +126,15 @@ class CourseController {
                 courseID = enroll['_id']
             }
         }
+        console.log(courseID)
         var course = await Course.where({CourseID: courseID}).fetch()
         response.json({data: course})
+    }
+
+    async popular2({response}){
+        const EmbedCourse = use('App/Models/EmbedCourse')
+        var embercourse = await EmbedCourse.fetch()
+        response.json(embercourse)
     }
 }
 
